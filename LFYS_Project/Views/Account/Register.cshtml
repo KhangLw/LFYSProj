@@ -1,0 +1,118 @@
+﻿@using LFYS_Project.ViewModels
+@model RegisterVM
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - WLFYS</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .card {
+            background-color: #444;
+            border: none;
+        }
+
+        .form-control {
+            background-color: #555;
+            color: #fff;
+            border: 1px solid #666;
+        }
+
+            .form-control::placeholder {
+                color: #bbb;
+            }
+
+        .text-info {
+            color: #17a2b8 !important;
+        }
+
+        .btn-primary {
+            background-color: #17a2b8;
+            border: none;
+        }
+
+            .btn-primary:hover {
+                background-color: #138496;
+            }
+
+        .text-decoration-none {
+            color: #17a2b8;
+        }
+
+            .text-decoration-none:hover {
+                color: #138496;
+            }
+
+
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-4 card p-3">
+                <h2 class="text-center text-info">Register</h2>
+                <form asp-action="Register" method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="mb-1">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-1">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-1">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="mb-1">
+                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="mb-1">
+                        <label asp-for="Address" class="control-label"></label>
+                        <textarea asp-for="Address" class="form-control" rows="2"></textarea>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-decoration-none float-start mt-2">Have account?</a>
+                        </div>
+                        <div class="col-4">
+                            <input type="submit" value="Register" class="btn btn-primary btn-sm float-end" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        @section Scripts {
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+        }
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,139 @@
+﻿@using LFYS_Project.Models
+@model Exercise
+@{
+    WlfysProjContext _context = new WlfysProjContext();
+    var exercises = _context.Exercises.Where(e => e.ExerciseId != Model.ExerciseId).OrderBy(e => e.Ac).Take(3).ToList();
+}
+<style>
+    .card-header {
+        background-color: #f8f9fa;
+    }
+
+    .table-responsive {
+        margin-top: 20px;
+    }
+
+    .btn-heart, .btn-start, .btn-submit {
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+
+        .btn-heart i, .btn-start i, .btn-submit i {
+            font-size: 1.2rem;
+        }
+
+    .btn-heart {
+        color: #dc3545; /* Màu đỏ cho trái tim */
+    }
+
+    .btn-start {
+        color: #007bff; /* Màu xanh cho nút làm bài */
+    }
+
+    .btn-submit {
+        color: #28a745; /* Màu xanh lá cho nút nộp bài */
+    }
+
+        .btn-heart:hover, .btn-start:hover, .btn-submit:hover {
+            opacity: 0.8;
+        }
+
+    .card-body .btn-group {
+        margin-top: 10px;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .btn-group .btn-submit {
+            margin-left: auto;
+        }
+</style>
+<!-- Lecture Videos Section -->
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">@Model.Title</h4>
+        </div>
+        <div class="card-body">
+            <!-- Chi tiết bài tập -->
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <h5 class="card-title">Chi Tiết</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="text-center"> @Model.Title</h2>
+                            <p class="text-center"><strong>AC:</strong> @Model.Ac</p>
+                            @Html.Raw(Model.Description)
+                            @* <p><strong>ID:</strong> 01</p>
+                            <p><strong>Tên bài:</strong> Tháp Hà Nội</p>
+                            <p><strong>Dạng bài:</strong> Đệ qui</p>
+                            <p><strong>AC:</strong> 61</p>
+                            <p><strong>Ngày tạo:</strong> 2024/08/15</p>
+                            <p><strong>Mô tả:</strong> Đây là một bài tập đệ qui cơ bản để giải quyết bài toán Tháp Hà Nội.</p>*@
+                            <div class="btn-group">
+                                <button class="btn btn-heart"><i class="fa fa-heart"></i> Thêm vào yêu thích</button>
+                                <button class="btn btn-submit"><i class="fa fa-upload"></i> Nộp bài</button>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bài tập liên quan -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Bài Tập Khác</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <!-- Ví dụ bài tập liên quan -->
+                                @{
+                                    foreach(var exercise in exercises)
+                                    {
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span><a href="~/Exercise/Detail/@exercise.ExerciseId">@exercise.Title</a></span>
+                                            <div>
+                                                <a class="btn btn-start btn-sm" href="~/Exercise/Detail/@exercise.ExerciseId"><i class="fa fa-play"></i></a>
+                                                <a class="btn btn-heart btn-sm ms-2"><i class="fa fa-heart"></i></a>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                                @* <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Bài Tập 1</span>
+                                    <div>
+                                        <button class="btn btn-start btn-sm"><i class="fa fa-play"></i></button>
+                                        <button class="btn btn-heart btn-sm ms-2"><i class="fa fa-heart"></i></button>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Bài Tập 2</span>
+                                    <div>
+                                        <button class="btn btn-start btn-sm"><i class="fa fa-play"></i></button>
+                                        <button class="btn btn-heart btn-sm ms-2"><i class="fa fa-heart"></i></button>
+                                    </div>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Bài Tập 3</span>
+                                    <div>
+                                        <button class="btn btn-start btn-sm"><i class="fa fa-play"></i></button>
+                                        <button class="btn btn-heart btn-sm ms-2"><i class="fa fa-heart"></i></button>
+                                    </div>
+                                </li> *@
+                                <!-- Thêm các bài tập liên quan khác nếu cần -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+﻿@model LFYS_Project.Models.CodeSubmission
+
+<div class="container">
+    <h1>Automatic Code Grader</h1>
+    <form asp-action="Index" method="post">
+        <div class="form-group">
+            <label for="code">Java Code:</label>
+            <textarea class="form-control" id="code" name="code" rows="10" cols="100">@Model.Code</textarea>
+        </div>
+        <div class="form-group">
+            <label for="inputData">Input Data:</label>
+            <textarea class="form-control" id="inputData" name="inputData" rows="5" cols="100">@Model.InputData</textarea>
+        </div>
+        <div class="form-group">
+            <label for="expectedOutput">Expected Output:</label>
+            <textarea class="form-control" id="expectedOutput" name="expectedOutput" rows="5" cols="100">@Model.ExpectedOutput</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    @if (!string.IsNullOrEmpty(Model.ActualOutput))
+    {
+        <h2>Actual Output:</h2>
+        <pre>@Model.ActualOutput</pre>
+        <h3>Result: @(Model.IsCorrect ? "Correct" : "Incorrect")</h3>
+    }
+</div>

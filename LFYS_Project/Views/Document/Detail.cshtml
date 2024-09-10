@@ -1,0 +1,73 @@
+﻿@using LFYS_Project.Models;
+@model Document
+@{
+    ViewData["Title"] = "";
+    WlfysProjContext _context = new WlfysProjContext();
+    var fileDocs = _context.FileDocuments.Where(f => f.DocumentId == Model.DocumentId).OrderBy(f => f.FiledocId).ToList();
+}
+<style>
+    @@media (max-width: 768px) {
+        .document-section-list{
+            display: none;
+        }
+    }
+</style>
+<div class="container-fluid mt-5">
+    <div class="row">
+        <!-- Danh Sách Mục Tài Liệu -->
+        <div class="col-md-3 document-section-list">
+            <h3 class="mb-4">Danh Sách Mục Tài Liệu</h3>
+            <div class="list-group">
+                @{
+                    foreach(var fileDoc in fileDocs)
+                    {
+                        <a href="#" class="list-group-item list-group-item-action" data-content="content-@(fileDoc.FiledocId)">
+                            <h5 class="mb-1">@fileDoc.FileTitle</h5>
+                        </a>
+                        <p class="content-@(fileDoc.FiledocId)" style="display : none;">
+                            @fileDoc.FileContent
+                        </p>
+                    }
+                }
+                
+                <!-- Thêm nhiều mục tài liệu nếu cần -->
+            </div>
+        </div>
+
+        <!-- Nội Dung Mục Tài Liệu -->
+        <div class="col-md-8 document-content">
+            <h3 class="mb-4" id="document-title">Nội Dung Mục Tài Liệu</h3>
+            <div id="document-body">
+                <!-- Nội dung của mục tài liệu đầu tiên -->
+                <p>@Model.Description</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Khi nhấp vào mục trong danh sách
+        $('.list-group-item').click(function (e) {
+            e.preventDefault();
+
+            // Xóa lớp active khỏi tất cả các mục
+            $('.list-group-item').removeClass('active');
+
+            // Thêm lớp active vào mục hiện tại
+            $(this).addClass('active');
+
+            // Lấy dữ liệu nội dung từ thuộc tính data-content
+            var contentId = $(this).data('content');
+            var content = $("."+contentId).text();
+            // Cập nhật nội dung tài liệu
+            $('#document-body').html(content);
+
+            // Cập nhật tiêu đề tài liệu
+            $('#document-title').text($(this).find('.card-title').text());
+        });
+
+    });
+</script>

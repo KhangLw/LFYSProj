@@ -1,0 +1,120 @@
+﻿@using LFYS_Project.Models;
+@using Microsoft.EntityFrameworkCore;
+@model IEnumerable<Exercise>
+@{
+    WlfysProjContext _context = new WlfysProjContext();
+}
+<!-- Lecture Videos Section -->
+<div class="wrapper mt-4">
+    <div class="container-fluid">
+
+        <div class="container">
+            <div class="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card-d">
+                            <div class="card-header">
+                                <h4 class="card-title">Bài tập</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="basic-datatables" class="display table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Tên bài</th>
+                                                <th>Dạng bài</th>
+                                                <th>AC</th>
+                                                <th>Đã làm</th>
+                                                <th>Yêu thích</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @{
+                                                foreach (var exercise in Model)
+                                                {
+                                                    string catResult = "";
+                                                    var catOfExs = _context.CategoryExercises.Where(c => c.ExerciseId == exercise.ExerciseId).ToList();
+                                                    if (catOfExs.Count() > 0)
+                                                    {
+                                                        catResult += _context.CategoryOfExercises.Find(catOfExs[0].CategoryId).CoeName;
+                                                        for (int i = 1; i < catOfExs.Count(); i++)
+                                                            catResult += ", " + _context.CategoryOfExercises.Find(catOfExs[i].CategoryId).CoeName;
+                                                    }
+                                                    <tr>
+                                                        <td><a href="~/Exercise/Detail/@exercise.ExerciseId">@exercise.ExerciseId</a></td>
+                                                        <td><a href="~/Exercise/Detail/@exercise.ExerciseId">@exercise.Title</a></td>
+                                                        <td>@catResult</td>
+                                                        <td>@exercise.Ac</td>
+                                                        <td>Done</td>
+                                                        <td><button class="btn btn-outline-danger"><i class="fa fa-heart"></i></button></td>
+                                                    </tr>
+                                                }
+                                            }
+
+                                            <!-- Thêm các hàng dữ liệu khác ở đây -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- bor -->
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Custom template | don't include it in your project! -->
+    <!-- End Custom template -->
+</div>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/wow/wow.min.js"></script>
+<script src="~/lib/easing/easing.min.js"></script>
+<script src="~/lib/waypoints/waypoints.min.js"></script>
+<script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="~/js/main.js"></script>
+<!-- jQuery -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#basic-datatables').DataTable({
+            "paging": true, // Bật phân trang
+            "searching": true, // Bật tìm kiếm
+            "ordering": true, // Bật sắp xếp
+            "info": true, // Hiển thị thông tin
+            "lengthChange": true, // Ẩn điều chỉnh số lượng mục trên mỗi trang
+            "language": {
+                "search": "Tìm kiếm:", // Văn bản tìm kiếm
+                "lengthMenu": "Hiển thị _MENU_ mục", // Văn bản hiển thị số lượng mục
+                "info": "Hiển thị từ _START_ đến _END_ trong tổng số _TOTAL_ mục", // Thông tin hiển thị
+                "infoEmpty": "Hiển thị 0 đến 0 trong tổng số 0 mục", // Khi không có dữ liệu
+                "infoFiltered": "(lọc từ _MAX_ mục)", // Khi dữ liệu được lọc
+                "paginate": {
+                    "first": "Đầu tiên", // Văn bản phân trang đầu tiên
+                    "last": "Cuối cùng", // Văn bản phân trang cuối cùng
+                    "next": "Tiếp theo", // Văn bản phân trang tiếp theo
+                    "previous": "Trước đó" // Văn bản phân trang trước đó
+                },
+                "emptyTable": "Không có dữ liệu" // Khi bảng không có dữ liệu
+            }
+        });
+    });
+</script>

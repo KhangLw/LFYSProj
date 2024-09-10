@@ -1,0 +1,203 @@
+﻿@model LFYS_Project.Models.AppUser
+<style>
+    .account-info {
+        margin-top: 20px;
+    }
+
+        .account-info .card {
+            margin-bottom: 20px;
+        }
+
+        .account-info .list-group-item {
+            cursor: pointer;
+        }
+
+            .account-info .list-group-item:hover {
+                background-color: #f8f9fa;
+            }
+
+    .details-table td,
+    .details-table th {
+        padding: 10px;
+    }
+
+    .details-table {
+        margin-bottom: 20px;
+    }
+
+    .avatar {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
+
+    #section-content, #section-title {
+        display: none; /* Ẩn nội dung chi tiết khi mới vào trang */
+    }
+</style>
+<div class="container">
+    <div class="row account-info">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title list-group-item" id="home-info">Thông Tin Tài Khoản</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" id="update-info">Cập nhật thông tin</li>
+                    <li class="list-group-item" id="change-password">Đổi mật khẩu</li>
+                    <li class="list-group-item" id="register-content-creator">Đăng ký nhà tạo nội dung</li>
+                    <li class="list-group-item" id="completed-exercises">Bài tập đã làm</li>
+                    <li class="list-group-item" id="participated-contests">Cuộc thi đã tham gia</li>
+                    <li class="list-group-item" id="completed-courses">Khóa học đã học</li>
+                    <li class="list-group-item" id="viewed-documents">Tài liệu đã xem</li>
+                    <li class="list-group-item" id="added-courses">Khóa học đã thêm</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title" id="section-title"></h5>
+                </div>
+                <div class="card-body" id="section-content">
+                    <p></p>
+                </div>
+            </div>
+            <div class="card details-table" id="account-details">
+                <div class="card-header">
+                    <h5 class="card-title">Thông Tin Chi Tiết</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <img src="https://via.placeholder.com/120" alt="Avatar" class="avatar" id="avatar-detail">
+                        <h5 id="name-detail">@Model.UserName</h5>
+                        <p id="email-detail">@Model.Email</p>
+                        <p id="phone-detail">@Model.PhoneNumber</p>
+                    </div>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Số lượng cuộc thi đã tham gia:</th>
+                                <td id="contests-participated">5</td>
+                            </tr>
+                            <tr>
+                                <th>Số bài đã làm:</th>
+                                <td id="exercises-completed">10</td>
+                            </tr>
+                            <tr>
+                                <th>Số khóa học đã tham gia:</th>
+                                <td id="courses-completed">8</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const sections = {
+            'update-info': `
+                        <h5>Cập nhật thông tin</h5>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Họ và tên:</label>
+                                <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Nhập email">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                        </form>
+                    `,
+            'change-password': `
+                        <h5>Đổi mật khẩu</h5>
+                        <form>
+                            <div class="form-group">
+                                <label for="current-password">Mật khẩu hiện tại:</label>
+                                <input type="password" class="form-control" id="current-password" placeholder="Nhập mật khẩu hiện tại">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">Mật khẩu mới:</label>
+                                <input type="password" class="form-control" id="new-password" placeholder="Nhập mật khẩu mới">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
+                        </form>
+                    `,
+            'register-content-creator': `
+                        <h5>Đăng ký nhà tạo nội dung</h5>
+                        <form>
+                            <div class="form-group">
+                                <label for="creator-info">Thông tin về bạn:</label>
+                                <textarea class="form-control" id="creator-info" rows="3" placeholder="Nhập thông tin cá nhân"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                        </form>
+                    `,
+            'completed-exercises': `
+                        <h5>Bài tập đã làm</h5>
+                        <ul>
+                            <li>Bài tập 1: Tháp Hà Nội</li>
+                            <li>Bài tập 2: Tính số Fibonacci</li>
+                            <li>Bài tập 3: Sắp xếp mảng</li>
+                        </ul>
+                    `,
+            'participated-contests': `
+                        <h5>Cuộc thi đã tham gia</h5>
+                        <ul>
+                            <li>Cuộc thi 1: Thi lập trình C++</li>
+                            <li>Cuộc thi 2: Thi thuật toán</li>
+                            <li>Cuộc thi 3: Thi phát triển web</li>
+                        </ul>
+                    `,
+            'completed-courses': `
+                        <h5>Khóa học đã học</h5>
+                        <ul>
+                            <li>Khóa học 1: Lập trình C# cơ bản</li>
+                            <li>Khóa học 2: Phát triển web với ASP.NET Core</li>
+                            <li>Khóa học 3: Kỹ năng lập trình nâng cao</li>
+                        </ul>
+                    `,
+            'viewed-documents': `
+                        <h5>Tài liệu đã xem</h5>
+                        <ul>
+                            <li>Tài liệu 1: Hướng dẫn C#</li>
+                            <li>Tài liệu 2: Tài liệu ASP.NET Core</li>
+                            <li>Tài liệu 3: Phân tích thuật toán</li>
+                        </ul>
+                    `,
+            'added-courses': `
+                        <h5>Khóa học đã thêm</h5>
+                        <ul>
+                            <li>Khóa học 1: Lập trình JavaScript nâng cao</li>
+                            <li>Khóa học 2: Kỹ thuật phát triển phần mềm</li>
+                            <li>Khóa học 3: Xử lý dữ liệu với Python</li>
+                        </ul>
+                    `
+        };
+
+        document.querySelectorAll('.list-group-item').forEach(item => {
+            item.addEventListener('click', function () {
+                if (this.id == "home-info") {
+                    document.getElementById("account-details").style.display = "block";
+                    document.getElementById("section-content").style.display = "none";
+                    document.getElementById("section-title").style.display = "none";
+                    return;
+                }
+                document.getElementById("account-details").style.display = "none";
+                document.getElementById("section-content").style.display = "block";
+                document.getElementById("section-title").style.display = "block";
+
+                const section = this.id;
+                document.getElementById('section-title').innerText = sections[section] ? sections[section].match(/<h5>([^<]+)<\/h5>/)[1] : 'Thông Tin Tài Khoản';
+                document.getElementById('section-content').innerHTML = sections[section] || '<p>Thông tin chi tiết không có sẵn.</p>';
+            });
+
+        });
+    });
+</script>

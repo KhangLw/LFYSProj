@@ -1,0 +1,152 @@
+﻿@using LFYS_Project.Models;
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore;
+@inject UserManager<AppUser> UserManager
+@model IEnumerable<AppUser>
+@{
+    ViewData["Title"] = "About";
+}
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-6 my-6 mt-0 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container text-center">
+        <h1 class="display-4 text-white animated slideInDown mb-4">About Us</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                <li class="breadcrumb-item text-primary active" aria-current="page">About</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- About Start -->
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="position-relative overflow-hidden ps-5 pt-5 h-100" style="min-height: 400px;">
+                    <img class="position-absolute w-100 h-100" src="~/img/it_img.jpg" alt="" style="object-fit: cover;">
+                    <img class="position-absolute top-0 start-0 bg-white pe-3 pb-3" src="~/img/code1.jpg" alt="" style="width: 200px; height: 200px;">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="h-100">
+                    <h6 class="text-primary text-uppercase mb-2">Về Chúng Tôi</h6>
+                    <h1 class="display-6 mb-4">L-FYS sẽ giúp bạn ngày càng tiến bộ hơn</h1>
+                    <p>Chào mừng bạn đến với L-FYS – nền tảng học lập trình trực tuyến hàng đầu được thiết kế dành riêng cho bạn. Tại L-FYS, chúng tôi cam kết cung cấp những khóa học chất lượng cao, được xây dựng với sự tâm huyết và kinh nghiệm của đội ngũ giảng viên và chuyên gia trong ngành.</p>
+                    <p class="mb-4">Sứ mệnh của L-FYS là cung cấp một môi trường học tập hiệu quả và tiện ích cho mọi người đam mê lập trình. Chúng tôi tin rằng việc học lập trình không chỉ là việc tiếp thu kiến thức mà còn là hành trình khám phá và phát triển kỹ năng. Với các khóa học đa dạng từ cơ bản đến nâng cao, chúng tôi muốn giúp bạn đạt được mục tiêu học tập và nghề nghiệp của mình.</p>
+                    <div class="row g-2 mb-4 pb-2">
+                        <div class="col-sm-12">
+                            <i class="fa fa-check text-primary me-2"></i>Chất Lượng: Chúng tôi đảm bảo rằng tất cả các khóa học đều được xây dựng và cập nhật bởi các chuyên gia hàng đầu, với nội dung chất lượng và phù hợp với nhu cầu của người học.
+                        </div>
+                        <div class="col-sm-12">
+                            <i class="fa fa-check text-primary me-2"></i>Hỗ Trợ: Đội ngũ hỗ trợ của chúng tôi luôn sẵn sàng giúp đỡ bạn trong suốt quá trình học, từ việc giải đáp thắc mắc đến hỗ trợ kỹ thuật.
+                        </div>
+                        <div class="col-sm-12">
+                            <i class="fa fa-check text-primary me-2"></i>Đổi Mới: Chúng tôi không ngừng cải tiến và cập nhật các khóa học mới, công nghệ mới để bạn luôn có được những kiến thức và kỹ năng mới nhất.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+<!-- Team Start -->
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h6 class="text-primary text-uppercase mb-2">Đội ngũ nhà tạo nội dung</h6>
+            <h1 class="display-6 mb-4">Chúng tôi luôn mang đến cho bạn những điều tuyệt vời nhất</h1>
+        </div>
+        <div class="row g-0 team-items">
+            @{
+                foreach (var creater in Model)
+                {
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item position-relative">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="~/img/team-1.jpg" alt="">
+                                <div class="team-social text-center">
+                                    <a class="btn btn-square btn-outline-primary border-2 m-1" href="creater.Facebook"><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-outline-primary border-2 m-1" href="creater.Youtube"><i class="fab fa-youtube"></i></a>
+                                    <a class="btn btn-square btn-outline-primary border-2 m-1" href="creater.Instagram"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="bg-light text-center p-4">
+                                <h5 class="mt-2">@creater.Name</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+@*             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item position-relative">
+                    <div class="position-relative">
+                        <img class="img-fluid" src="~/img/team-1.jpg" alt="">
+                        <div class="team-social text-center">
+                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="bg-light text-center p-4">
+                        <h5 class="mt-2">Full Name</h5>
+                        <span>Trainer</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item position-relative">
+                    <div class="position-relative">
+                        <img class="img-fluid" src="~/img/team-2.jpg" alt="">
+                        <div class="team-social text-center">
+                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="bg-light text-center p-4">
+                        <h5 class="mt-2">Full Name</h5>
+                        <span>Trainer</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="team-item position-relative">
+                    <div class="position-relative">
+                        <img class="img-fluid" src="~/img/team-3.jpg" alt="">
+                        <div class="team-social text-center">
+                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="bg-light text-center p-4">
+                        <h5 class="mt-2">Full Name</h5>
+                        <span>Trainer</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="team-item position-relative">
+                    <div class="position-relative">
+                        <img class="img-fluid" src="~/img/team-4.jpg" alt="">
+                        <div class="team-social text-center">
+                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="bg-light text-center p-4">
+                        <h5 class="mt-2">Full Name</h5>
+                        <span>Trainer</span>
+                    </div>
+                </div>
+            </div> *@
+        </div>
+    </div>
+</div>
+<!-- Team End -->

@@ -1,0 +1,187 @@
+﻿@{
+}
+<!-- Hỗ trợ trình biên soạn -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.js"></script>
+
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<style>
+    .editor-container {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        background-color: #fff;
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Soạn bài tập</h1>
+    <div class="form-group mb-4">
+        <label for="courseSelect">Chọn khóa học:</label>
+        <select class="form-control" id="courseSelect" required>
+            <option value="">Chọn khóa học</option>
+            <option value="course1">Khóa học 1</option>
+            <option value="course2">Khóa học 2</option>
+            <option value="course3">Khóa học 3</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="title">Nhập tiêu đề:</label>
+        <input type="text" class="form-control" id="title" placeholder="Nhập tiêu đề">
+    </div>
+    <div class="form-group">
+        <label for="fileInput">Thêm từ file Word tại đây (.docx):</label>
+        <input type="file" class="form-control-file" id="fileInput" accept=".docx">
+    </div>
+    <div class="editor-container mt-4">
+        <div id="editor" style="height: 300px;"></div>
+    </div>
+
+    <!-- Test Cases Section -->
+    <div class="mt-4">
+        <h3>Nhập Test Cases</h3>
+        <div id="testCasesContainer">
+            <!-- Test cases will be added here dynamically -->
+        </div>
+        <button class="btn btn-secondary mt-2" id="addTestCaseBtn">Thêm Test Case</button>
+    </div>
+
+    <div class="text-center mt-4">
+        <button class="btn btn-primary" id="submitBtn">Gửi nội dung</button>
+    </div>
+</div>
+
+
+
+<!-- Mammoth JS for .docx to HTML conversion -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+
+<!-- Quill JS -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script>
+    // Khởi tạo Quill editor
+    var quill = new Quill("#editor", {
+        theme: "snow",
+        modules: {
+            clipboard: {
+                matchVisual: false, // Đảm bảo dán dữ liệu gốc từ Word không bị biến dạng
+            },
+            toolbar: [
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                ["bold", "italic", "underline", "strike"], // Tùy chọn định dạng văn bản cơ bản
+                ["blockquote", "code-block"], // Thêm blockquote và code-block
+                [{ script: "sub" }, { script: "super" }], // Chỉ số dưới và trên
+                [{ list: "ordered" }, { list: "bullet" }],
+                [{ indent: "-1" }, { indent: "+1" }],
+                [{ align: [] }],
+                ["link", "image", "video"],
+                [{ color: [] }, { background: [] }],
+                ["clean"], // Nút xóa định dạng
+                ["formula"], // Hỗ trợ công thức toán học với KaTeX
+                ["direction", { direction: "rtl" }],
+            ],
+        },
+    });
+
+    // Sự kiện khi người dùng chọn file
+    document.getElementById('fileInput').addEventListener('change', function (event) {
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                var arrayBuffer = event.target.result;
+                mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
+                    .then(displayResult)
+                    .catch(handleError);
+            };
+            reader.readAsArrayBuffer(file);
+        }
+    });
+
+    function displayResult(result) {
+        // Đưa nội dung từ file vào editor
+        quill.root.innerHTML = result.value;
+    }
+
+    function handleError(err) {
+        console.error(err);
+        alert('Có lỗi xảy ra khi đọc file: ' + err.message);
+    }
+
+    // Xử lý thêm test case
+    let testCaseIndex = 0;
+    const testCases = {};
+
+    function addTestCase() {
+        testCaseIndex++;
+        const container = document.getElementById('testCasesContainer');
+        const testCaseDiv = document.createElement('div');
+        testCaseDiv.className = 'test-case mb-3';
+        testCaseDiv.id = `test-case-${testCaseIndex}`;
+        testCaseDiv.innerHTML = `
+                    <div class="test-case-header d-flex justify-content-between align-items-center mb-2">
+                        <h4>Test Case ${testCaseIndex}</h4>
+                        <button class="btn btn-info btn-sm" onclick="editTestCase(${testCaseIndex})">Thu gọn</button>
+                    </div>
+                    <div class="test-case-content">
+                        <div class="form-group">
+                            <label for="input-${testCaseIndex}">Nhập Input ${testCaseIndex}:</label>
+                            <textarea class="form-control" id="input-${testCaseIndex}" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="output-${testCaseIndex}">Nhập Output ${testCaseIndex}:</label>
+                            <textarea class="form-control" id="output-${testCaseIndex}" rows="3"></textarea>
+                        </div>
+                    </div>
+                `;
+        container.appendChild(testCaseDiv);
+        testCases[testCaseIndex] = { content: testCaseDiv.innerHTML, visible: false };
+    }
+
+    function editTestCase(index) {
+        const testCaseDiv = document.getElementById(`test-case-${index}`);
+        if (testCases[index].visible) {
+            testCaseDiv.querySelector('.test-case-content').style.display = 'block';
+            testCases[index].visible = false;
+            testCaseDiv.querySelector('.btn-info').textContent = 'Thu gọn';
+        } else {
+            testCaseDiv.querySelector('.test-case-content').style.display = 'none';
+            testCases[index].visible = true;
+            testCaseDiv.querySelector('.btn-info').textContent = 'Chỉnh sửa';
+        }
+    }
+
+    document.getElementById('addTestCaseBtn').addEventListener('click', addTestCase);
+
+    // Sự kiện khi người dùng bấm nút gửi nội dung
+    document.getElementById('submitBtn').addEventListener('click', function () {
+        var title = document.getElementById('title').value;
+        var content = quill.root.innerHTML;
+
+        // Thu thập test cases
+        let testCasesArray = [];
+        for (let i = 1; i <= testCaseIndex; i++) {
+            let input = document.getElementById(`input-${i}`).value;
+            let output = document.getElementById(`output-${i}`).value;
+            if (input || output) {
+                testCasesArray.push({ input, output });
+            }
+        }
+
+        // Gửi dữ liệu đến server
+        $.ajax({
+            url: '/Document/AddDoc',  // Đường dẫn đến controller và action của bạn
+            type: 'POST',
+            data: JSON.stringify({ title: title, content: content, testCases: testCasesArray }),
+            contentType: 'application/json',
+            success: function (response) {
+                alert('Nội dung đã được gửi thành công!');
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert('Có lỗi xảy ra khi gửi nội dung.');
+            }
+        });
+    });
+</script>

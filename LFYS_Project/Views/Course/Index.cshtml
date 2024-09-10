@@ -1,0 +1,189 @@
+﻿@using LFYS_Project.Models;
+@model IEnumerable<Course>
+@{
+    ViewData["Title"] = "Tài liệu";
+    LibSupport lib = new LibSupport();
+}
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-6 my-6 mt-0 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container text-center">
+        <h1 class="display-4 text-white animated slideInDown mb-4">Khóa học</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a class="text-white" href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">Khóa học</a></li>
+
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Courses Start -->
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h6 class="text-primary text-uppercase mb-2">Khóa học</h6>
+            <h1 class="display-6 mb-4">Những khóa học hữu ích cho con đường lập trình của bạn</h1>
+        </div>
+        <div class="row g-4 justify-content-center courses-list">
+            @{
+                foreach(var course in Model)
+                {
+                    <div class="col-lg-4 col-md-6 wow fadeInUp courses-item" data-wow-delay="0.1s">
+                        <div class="d-flex flex-column bg-light overflow-hidden h-100">
+                            <div class="text-center p-4 pt-0">
+                                <div class="d-inline-block bg-primary text-white fs-5 py-1 px-4 mb-4">@(course.IsFree != null && course.IsFree == true ? "Free" : "$" + course.Price.ToString())</div>
+                                <h5 class="mb-3">@course.CourseName</h5>
+                                <p>@lib.ShortenString(course.Description)</p>
+                            </div>
+                            <div class="position-relative mt-auto">
+                                <img class="img-fluid" src="~/img/code.jpg" alt="">
+                                <div class="courses-overlay">
+                                    <a class="btn btn-outline-primary border-2" href="~/Course/Detail/@course.CourseId">Chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+@*             <div class="col-lg-4 col-md-6 wow fadeInUp courses-item" data-wow-delay="0.1s">
+                <div class="d-flex flex-column bg-light overflow-hidden h-100">
+                    <div class="text-center p-4 pt-0">
+                        <div class="d-inline-block bg-primary text-white fs-5 py-1 px-4 mb-4">$99</div>
+                        <h5 class="mb-3">Automatic Car Lessons</h5>
+                        <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p>
+                        <ol class="breadcrumb justify-content-center mb-0">
+                            <li class="breadcrumb-item small"><i class="fa fa-signal text-primary me-2"></i>Beginner</li>
+                            <li class="breadcrumb-item small"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Week</li>
+                        </ol>
+                    </div>
+                    <div class="position-relative mt-auto">
+                        <img class="img-fluid" src="img/courses-1.jpg" alt="">
+                        <div class="courses-overlay">
+                            <a class="btn btn-outline-primary border-2" href="">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp courses-item" data-wow-delay="0.1s">
+                <div class="d-flex flex-column bg-light overflow-hidden h-100">
+                    <div class="text-center p-4 pt-0">
+                        <div class="d-inline-block bg-primary text-white fs-5 py-1 px-4 mb-4">$99</div>
+                        <h5 class="mb-3">Automatic Car Lessons</h5>
+                        <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p>
+                        <ol class="breadcrumb justify-content-center mb-0">
+                            <li class="breadcrumb-item small"><i class="fa fa-signal text-primary me-2"></i>Beginner</li>
+                            <li class="breadcrumb-item small"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Week</li>
+                        </ol>
+                    </div>
+                    <div class="position-relative mt-auto">
+                        <img class="img-fluid" src="img/courses-1.jpg" alt="">
+                        <div class="courses-overlay">
+                            <a class="btn btn-outline-primary border-2" href="">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp courses-item" data-wow-delay="0.1s">
+                <div class="d-flex flex-column bg-light overflow-hidden h-100">
+                    <div class="text-center p-4 pt-0">
+                        <div class="d-inline-block bg-primary text-white fs-5 py-1 px-4 mb-4">$99</div>
+                        <h5 class="mb-3">Automatic Car Lessons</h5>
+                        <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p>
+                        <ol class="breadcrumb justify-content-center mb-0">
+                            <li class="breadcrumb-item small"><i class="fa fa-signal text-primary me-2"></i>Beginner</li>
+                            <li class="breadcrumb-item small"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Week</li>
+                        </ol>
+                    </div>
+                    <div class="position-relative mt-auto">
+                        <img class="img-fluid" src="img/courses-1.jpg" alt="">
+                        <div class="courses-overlay">
+                            <a class="btn btn-outline-primary border-2" href="">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp courses-item" data-wow-delay="0.1s">
+                <div class="d-flex flex-column bg-light overflow-hidden h-100">
+                    <div class="text-center p-4 pt-0">
+                        <div class="d-inline-block bg-primary text-white fs-5 py-1 px-4 mb-4">$99</div>
+                        <h5 class="mb-3">Automatic Car Lessons</h5>
+                        <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p>
+                        <ol class="breadcrumb justify-content-center mb-0">
+                            <li class="breadcrumb-item small"><i class="fa fa-signal text-primary me-2"></i>Beginner</li>
+                            <li class="breadcrumb-item small"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Week</li>
+                        </ol>
+                    </div>
+                    <div class="position-relative mt-auto">
+                        <img class="img-fluid" src="img/courses-1.jpg" alt="">
+                        <div class="courses-overlay">
+                            <a class="btn btn-outline-primary border-2" href="">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp courses-item" data-wow-delay="0.1s">
+                <div class="d-flex flex-column bg-light overflow-hidden h-100">
+                    <div class="text-center p-4 pt-0">
+                        <div class="d-inline-block bg-primary text-white fs-5 py-1 px-4 mb-4">$99</div>
+                        <h5 class="mb-3">Automatic Car Lessons</h5>
+                        <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p>
+                        <ol class="breadcrumb justify-content-center mb-0">
+                            <li class="breadcrumb-item small"><i class="fa fa-signal text-primary me-2"></i>Beginner</li>
+                            <li class="breadcrumb-item small"><i class="fa fa-calendar-alt text-primary me-2"></i>3 Week</li>
+                        </ol>
+                    </div>
+                    <div class="position-relative mt-auto">
+                        <img class="img-fluid" src="img/courses-1.jpg" alt="">
+                        <div class="courses-overlay">
+                            <a class="btn btn-outline-primary border-2" href="">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div> *@
+
+            <!-- Thêm các khóa học khác ở đây -->
+        </div>
+        <div class="pagination-container text-center mt-4"></div>
+    </div>
+</div>
+<!-- Courses End -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const itemsPerPage = 3; // Số lượng khóa học trên mỗi trang
+        const courses = document.querySelectorAll('.courses-item');
+        const totalPages = Math.ceil(courses.length / itemsPerPage);
+        const paginationContainer = document.querySelector('.pagination-container');
+
+        // Tạo các nút phân trang
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement('button');
+            button.classList.add('btn', 'btn-primary', 'mx-1');
+            button.innerText = i;
+            button.addEventListener('click', () => showPage(i));
+            paginationContainer.appendChild(button);
+        }
+
+        // Hiển thị trang đầu tiên
+        showPage(1);
+
+        function showPage(page) {
+            courses.forEach((course, index) => {
+                course.style.display = 'none';
+                if (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) {
+                    course.style.display = 'block';
+                }
+            });
+
+            // Thêm lớp 'active' cho nút trang hiện tại
+            document.querySelectorAll('.pagination-container button').forEach((btn, idx) => {
+                btn.classList.remove('active');
+                if (idx + 1 === page) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+    });
+
+</script>

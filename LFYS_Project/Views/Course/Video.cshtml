@@ -1,0 +1,151 @@
+﻿@using LFYS_Project.Models
+@model Video
+@{
+    WlfysProjContext _context = new WlfysProjContext();
+    var videos = _context.Videos.Where(v => v.CourseId == Model.CourseId).OrderBy(v => v.VideoId).ToList();
+}
+<style>
+    .main-video {
+        height: 480px;
+        width: 100%;
+    }
+
+    .sidebar-videos {
+        max-height: 480px;
+        overflow-y: auto;
+    }
+
+    .video-card {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+        .video-card .sub-video {
+            width: 120px;
+            height: 90px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .video-card a {
+            text-decoration: none;
+            color: #333;
+        }
+
+            .video-card a:hover {
+                text-decoration: underline;
+            }
+
+    .video-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+</style>
+<div class="container mt-5">
+    <div class="row">
+        <!-- Video chính -->
+        <div class="col-md-8">
+            <h2 class="mb-4">@Model.Title</h2>
+            <div class="video-card">
+                <video class="main-video" controls>
+                    <source src="~/video/@Model.VideoUrl" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p>@Model.Description</p>
+        </div>
+
+        <!-- Video liên quan -->
+        <div class="col-md-4">
+            <h2 class="mb-4">Video Khác</h2>
+            <div class="sidebar-videos">
+                @{
+                    foreach(var video in videos)
+                    {
+                        <div class="video-card">
+                            <video class="sub-video" controls>
+                                <source src="~/video/@video.VideoUrl" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div>
+                                @{
+                                    if(video.VideoId == Model.VideoId)
+                                    {
+                                        <a href="~/Course/Video/@video.VideoId" class="video-title"><span class="text-danger">@video.Title</span></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="~/Course/Video/@video.VideoId" class="video-title">@video.Title</a>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                    }
+                }
+                @* <!-- Video 1 -->
+                <div class="video-card">
+                    <img src="path/to/thumbnail1.jpg" alt="Video 1">
+                    <div>
+                        <a href="path/to/related-video1.mp4" class="video-title">Giới thiệu về khóa học</a>
+                        <p>Mô tả ngắn gọn về video.</p>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="video-card">
+                    <img src="path/to/thumbnail2.jpg" alt="Video 2">
+                    <div>
+                        <a href="path/to/related-video2.mp4" class="video-title">Cài đặt môi trường phát triển</a>
+                        <p>Mô tả ngắn gọn về video.</p>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <img src="path/to/thumbnail3.jpg" alt="Video 3">
+                    <div>
+                        <a href="path/to/related-video3.mp4" class="video-title">Các khái niệm cơ bản</a>
+                        <p>Mô tả ngắn gọn về video.</p>
+                    </div>
+                </div>
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <img src="path/to/thumbnail3.jpg" alt="Video 3">
+                    <div>
+                        <a href="path/to/related-video3.mp4" class="video-title">Các khái niệm cơ bản</a>
+                        <p>Mô tả ngắn gọn về video.</p>
+                    </div>
+                </div>
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <img src="path/to/thumbnail3.jpg" alt="Video 3">
+                    <div>
+                        <a href="path/to/related-video3.mp4" class="video-title">Các khái niệm cơ bản</a>
+                        <p>Mô tả ngắn gọn về video.</p>
+                    </div>
+                </div>
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <img src="path/to/thumbnail3.jpg" alt="Video 3">
+                    <div>
+                        <a href="path/to/related-video3.mp4" class="video-title">Các khái niệm cơ bản</a>
+                        <p>Mô tả ngắn gọn về video.</p>
+                    </div>
+                </div>
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <img src="path/to/thumbnail3.jpg" alt="Video 3">
+                    <div>
+                        <a href="path/to/related-video3.mp4" class="video-title">Các khái niệm cơ bản</a>
+                        <p>Mô tả ngắn gọn về video.</p>
+                    </div>
+                </div>
+ *@
+
+                <!-- Thêm nhiều video hơn nếu cần -->
+            </div>
+        </div>
+    </div>
+</div>
