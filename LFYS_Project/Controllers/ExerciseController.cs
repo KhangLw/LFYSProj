@@ -24,5 +24,10 @@ namespace LFYS_Project.Controllers
         {
             return View();
         }
+
+        public IActionResult Upcode()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,92 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- CodeMirror CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+
+<!-- CodeMirror Theme (Dracula) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/dracula.min.css">
+
+<style>
+
+    .CodeMirror {
+        height: 500px;
+    }
+
+</style>
+<div class="container">
+    <h1 class="text-center mb-4">Để lại code của bạn tại đây !</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Code</h4>
+            <textarea id="codeEditor"></textarea>
+            <select id="languageSelector" class="form-select mt-2">
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="clike">C#</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="text-center mt-3">
+        <button class="btn btn-primary" onclick="runCode()">Run Code</button>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- CodeMirror JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+
+<!-- CodeMirror Modes for JavaScript, Python, Java, and C# -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.min.js"></script>
+
+<!-- CodeMirror Addons for auto-close and bracket matching -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/addon/edit/closebrackets.min.js"></script>
+
+<script>
+    // Tạo CodeMirror editor với hỗ trợ đa ngôn ngữ
+    var editor = CodeMirror.fromTextArea(document.getElementById('codeEditor'), {
+        lineNumbers: true,
+        mode: 'javascript',  // Mặc định là JavaScript
+        theme: 'dracula',   // Theme của editor
+        matchBrackets: true, // Đánh dấu ngoặc trùng khớp
+        autoCloseBrackets: true, // Tự động đóng ngoặc
+        extraKeys: {
+            "Ctrl-Space": "autocomplete"
+        },
+    });
+    // Thay đổi ngôn ngữ
+    document.getElementById('languageSelector').addEventListener('change', function () {
+        var selectedLang = this.value;
+        if (selectedLang === 'java') {
+            editor.setOption('mode', 'text/x-java');
+        } else if (selectedLang === 'python') {
+            editor.setOption('mode', 'python');
+        } else if (selectedLang === 'clike') {
+            editor.setOption('mode', 'text/x-csharp');
+        } else {
+            editor.setOption('mode', 'javascript');
+        }
+    });
+
+    // Hàm chạy code và hiển thị kết quả
+    function runCode() {
+        var code = editor.getValue();
+        var iframe = document.getElementById('output');
+        var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDoc.open();
+        iframeDoc.write(code);
+        iframeDoc.close();
+    }
+</script>

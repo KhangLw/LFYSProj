@@ -21,5 +21,7 @@ public partial class Exercise
 
     public virtual ICollection<CategoryExercise> CategoryExercises { get; set; } = new List<CategoryExercise>();
 
+    public virtual ICollection<ResultTable> ResultTables { get; set; } = new List<ResultTable>();
+
     public virtual ICollection<Test> Tests { get; set; } = new List<Test>();
 }

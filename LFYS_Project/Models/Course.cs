@@ -19,6 +19,10 @@ public partial class Course
 
     public int? Discount { get; set; }
 
+    public DateTime? CreateAt { get; set; }
+
+    public DateTime? UpdateAt { get; set; }
+
     public string? Avt { get; set; }
 
     public string? UserId { get; set; }
