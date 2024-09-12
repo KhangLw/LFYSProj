@@ -326,20 +326,26 @@ public partial class WlfysProjContext : DbContext
 
         modelBuilder.Entity<ResultTable>(entity =>
         {
-            entity.HasKey(e => e.ResultId).HasName("PK__ResultTa__AFB3C3160F1F9ACE");
+            entity.HasKey(e => e.ResultId).HasName("PK__ResultTa__AFB3C3163A354210");
 
             entity.ToTable("ResultTable");
 
             entity.Property(e => e.ResultId).HasColumnName("result_id");
             entity.Property(e => e.Complete).HasColumnName("complete");
             entity.Property(e => e.ExerciseId).HasColumnName("exercise_id");
+            entity.Property(e => e.Language)
+                .HasMaxLength(100)
+                .HasColumnName("language");
+            entity.Property(e => e.SubmitTime)
+                .HasColumnType("datetime")
+                .HasColumnName("submit_time");
             entity.Property(e => e.UserId)
                 .HasMaxLength(450)
                 .HasColumnName("user_id");
 
             entity.HasOne(d => d.Exercise).WithMany(p => p.ResultTables)
                 .HasForeignKey(d => d.ExerciseId)
-                .HasConstraintName("FK__ResultTab__user___02FC7413");
+                .HasConstraintName("FK__ResultTab__exerc__18EBB532");
         });
 
         modelBuilder.Entity<Test>(entity =>

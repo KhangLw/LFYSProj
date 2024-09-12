@@ -17,24 +17,35 @@ namespace LFYS_Project.Controllers
         [HttpGet]
         public IActionResult Index(int id)
         {
-            return View(Convert.ToDouble(id + 100));
+            return View(id);
         }
 
         [HttpPost]
-        public IActionResult Index(string code, string language, int id)
+        public IActionResult Execute(string code, string language, int id)
         {
             ExecuteCode excuteCode = new ExecuteCode();
             CodeSubmission codeSubmission = new CodeSubmission();
             codeSubmission.Code = code;
             var inputList = _context.Tests.Where(c => c.ExerciseId == id).Select(c => c.Intput).ToList();
             var outputList = _context.Tests.Where(c => c.ExerciseId == id).Select(c => c.Output).ToList() ;
-            var output = excuteCode.IsTrue(codeSubmission, inputList, outputList);
+            var output = excuteCode.IsTrue(codeSubmission, inputList, outputList, language);
 
-            //codeSubmission.ExpectedOutput = "4";
-            //codeSubmission.ActualOutput = _codeExecutionService.ExecuteCode(codeSubmission.Code, codeSubmission.InputData, out bool isCorrect, codeSubmission.ExpectedOutput);
-            //codeSubmission.IsCorrect = isCorrect;
+            ResultTable result = new ResultTable();
+            result.ExerciseId = id;
+            result.Language = language;
+            result.Complete = output;
+            result.SubmitTime = DateTime.Now;
 
-            return View(output);
+            try
+            {
+                _context.ResultTables.Add(result);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return Json(new { redirectUrl = Url.Action("ResultTable", "Exercise") });
         }
 
     }

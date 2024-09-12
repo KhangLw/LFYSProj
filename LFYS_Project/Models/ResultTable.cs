@@ -13,5 +13,9 @@ public partial class ResultTable
 
     public string? UserId { get; set; }
 
+    public string? Language { get; set; }
+
+    public DateTime? SubmitTime { get; set; }
+
     public virtual Exercise? Exercise { get; set; }
 }

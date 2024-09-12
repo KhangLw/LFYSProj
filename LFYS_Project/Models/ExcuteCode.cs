@@ -103,14 +103,16 @@ namespace LFYS_Project.Models
             return output;
         }
 
-        public double IsTrue(CodeSubmission codeSubmission, List<string> inputList, List<string> outputList)
+        public double IsTrue(CodeSubmission codeSubmission, List<string> inputList, List<string> outputList, string languege)
         {
-            // Gọi ExecuteCode với danh sách input và output để kiểm tra
-            string result = Execute(codeSubmission.Code, inputList, outputList);
+            string result = "";
+            if(languege == "Java")
+            {
+                result = Execute(codeSubmission.Code, inputList, outputList);
+            }
             int passedTests = result.Split("Passed").Length - 1;
             int totalTests = inputList.Count;
 
-            // Tính tỷ lệ phần trăm số test pass
             return (double) passedTests / totalTests * 100;
         }
     }

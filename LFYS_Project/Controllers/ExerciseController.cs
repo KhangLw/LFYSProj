@@ -29,5 +29,11 @@ namespace LFYS_Project.Controllers
         {
             return View();
         }
+
+        public IActionResult ResultTable()
+        {
+            var results = _context.ResultTables.Include(r => r.Exercise).ToList();
+            return View(results);
+        }
     }
 }
