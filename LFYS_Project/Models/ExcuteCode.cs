@@ -36,7 +36,7 @@ namespace LFYS_Project.Models
                 // Biên dịch mã code
                 Process compiler = new Process();
                 compiler.StartInfo.FileName = "javac";
-                compiler.StartInfo.Arguments = $"-source 1.8 -target 1.8 {fileName}";
+                //compiler.StartInfo.Arguments = $"-source 1.8 -target 1.8 {fileName}";
                 compiler.StartInfo.RedirectStandardOutput = true;
                 compiler.StartInfo.RedirectStandardError = true;
                 compiler.StartInfo.UseShellExecute = false;
@@ -106,7 +106,7 @@ namespace LFYS_Project.Models
         public double IsTrue(CodeSubmission codeSubmission, List<string> inputList, List<string> outputList, string languege)
         {
             string result = "";
-            if(languege == "Java")
+            if(languege == "java")
             {
                 result = Execute(codeSubmission.Code, inputList, outputList);
             }

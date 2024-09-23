@@ -1,4 +1,7 @@
-﻿@{
+﻿@using LFYS_Project.Models
+@{
+    WlfysProjContext _context = new WlfysProjContext();
+    var categories = _context.CategoryOfExercises.ToList();
 }
 <!-- Hỗ trợ trình biên soạn -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css">
@@ -17,17 +20,17 @@
 <div class="container mt-5">
     <h1 class="text-center mb-4">Soạn bài tập</h1>
     <div class="form-group mb-4">
-        <label for="courseSelect">Chọn khóa học:</label>
-        <select class="form-control" id="courseSelect" required>
-            <option value="">Chọn khóa học</option>
-            <option value="course1">Khóa học 1</option>
-            <option value="course2">Khóa học 2</option>
-            <option value="course3">Khóa học 3</option>
+        <label for="courseSelect">Chọn dạng bài</label>
+        <select class="form-control" id="courseSelect" multiple required>
+            @foreach (var category in categories)
+            {
+                <option value="@category.CoeId">@category.CoeName</option>
+            }
         </select>
     </div>
     <div class="form-group">
-        <label for="title">Nhập tiêu đề:</label>
-        <input type="text" class="form-control" id="title" placeholder="Nhập tiêu đề">
+        <label for="title">Nhập tên bài:</label>
+        <input type="text" class="form-control" id="title" placeholder="Nhập tên bài">
     </div>
     <div class="form-group">
         <label for="fileInput">Thêm từ file Word tại đây (.docx):</label>
@@ -50,8 +53,6 @@
         <button class="btn btn-primary" id="submitBtn">Gửi nội dung</button>
     </div>
 </div>
-
-
 
 <!-- Mammoth JS for .docx to HTML conversion -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
@@ -120,21 +121,21 @@
         testCaseDiv.className = 'test-case mb-3';
         testCaseDiv.id = `test-case-${testCaseIndex}`;
         testCaseDiv.innerHTML = `
-                    <div class="test-case-header d-flex justify-content-between align-items-center mb-2">
-                        <h4>Test Case ${testCaseIndex}</h4>
-                        <button class="btn btn-info btn-sm" onclick="editTestCase(${testCaseIndex})">Thu gọn</button>
+                <div class="test-case-header d-flex justify-content-between align-items-center mb-2">
+                    <h4>Test Case ${testCaseIndex}</h4>
+                    <button class="btn btn-info btn-sm" onclick="editTestCase(${testCaseIndex})">Thu gọn</button>
+                </div>
+                <div class="test-case-content">
+                    <div class="form-group">
+                        <label for="input-${testCaseIndex}">Nhập Input ${testCaseIndex}:</label>
+                        <textarea class="form-control" id="input-${testCaseIndex}" rows="3"></textarea>
                     </div>
-                    <div class="test-case-content">
-                        <div class="form-group">
-                            <label for="input-${testCaseIndex}">Nhập Input ${testCaseIndex}:</label>
-                            <textarea class="form-control" id="input-${testCaseIndex}" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="output-${testCaseIndex}">Nhập Output ${testCaseIndex}:</label>
-                            <textarea class="form-control" id="output-${testCaseIndex}" rows="3"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="output-${testCaseIndex}">Nhập Output ${testCaseIndex}:</label>
+                        <textarea class="form-control" id="output-${testCaseIndex}" rows="3"></textarea>
                     </div>
-                `;
+                </div>
+            `;
         container.appendChild(testCaseDiv);
         testCases[testCaseIndex] = { content: testCaseDiv.innerHTML, visible: false };
     }
@@ -159,6 +160,9 @@
         var title = document.getElementById('title').value;
         var content = quill.root.innerHTML;
 
+        // Thu thập các dạng bài được chọn
+        var selectedCategories = Array.from(document.getElementById('courseSelect').selectedOptions).map(option => option.value);
+
         // Thu thập test cases
         let testCasesArray = [];
         for (let i = 1; i <= testCaseIndex; i++) {
@@ -171,9 +175,9 @@
 
         // Gửi dữ liệu đến server
         $.ajax({
-            url: '/Document/AddDoc',  // Đường dẫn đến controller và action của bạn
+            url: '/Exercise/SaveEx',  // Đường dẫn đến controller và action của bạn
             type: 'POST',
-            data: JSON.stringify({ title: title, content: content, testCases: testCasesArray }),
+            data: JSON.stringify({ categories: selectedCategories, title: title, content: content, testCases: testCasesArray }),
             contentType: 'application/json',
             success: function (response) {
                 alert('Nội dung đã được gửi thành công!');

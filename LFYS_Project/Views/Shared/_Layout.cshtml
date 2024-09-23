@@ -64,10 +64,13 @@
                         <a href="~/Exercise/Index" class="dropdown-item">Bài tập</a>
                     </div>
                 </div>
+                <a href="~/Contest/Index" class="nav-item nav-link">Cuộc thi</a>
+                <a href="~/Exercise/ResultTable" class="nav-item nav-link">Bảng chấm bài</a>
+
+
                 @{
                     if (User.IsInRole("Creater"))
                     {
-                        <a href="~/Contest/Index" class="nav-item nav-link">Cuộc thi</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Công cụ tác giả</a>
                             <div class="dropdown-menu bg-light m-0">

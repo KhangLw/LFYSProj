@@ -17,5 +17,7 @@ public partial class ResultTable
 
     public DateTime? SubmitTime { get; set; }
 
+    public string? Code { get; set; }
+
     public virtual Exercise? Exercise { get; set; }
 }

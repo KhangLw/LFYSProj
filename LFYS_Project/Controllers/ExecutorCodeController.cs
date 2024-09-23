@@ -35,6 +35,7 @@ namespace LFYS_Project.Controllers
             result.Language = language;
             result.Complete = output;
             result.SubmitTime = DateTime.Now;
+            result.Code = code;
 
             try
             {

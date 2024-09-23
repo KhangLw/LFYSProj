@@ -1,0 +1,111 @@
+﻿@using LFYS_Project.Models
+@model Course
+@{
+    WlfysProjContext _context = new WlfysProjContext();
+    var categories = _context.Categories.ToList();
+}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Chỉnh Sửa Khóa Học</h1>
+    <div class="form-group mb-4">
+        <label for="courseName">Tên Khóa Học:</label>
+        <input type="text" class="form-control" id="courseName" placeholder="Nhập tên khóa học" required value="@Model.CourseName">
+    </div>
+    <div class="form-group mb-4">
+        <label for="courseDescription">Mô Tả:</label>
+        <textarea class="form-control" id="courseDescription" rows="4" placeholder="Nhập mô tả khóa học" >@Model.Description</textarea>
+    </div>
+    <div class="form-group mb-4">
+        <label for="courseCategory">Chọn Danh Mục:</label>
+        <select class="form-control" id="courseSelect" required>
+            <option value="">Chọn Danh Mục</option>
+            @{
+                foreach (var category in categories)
+                {
+                    if(Model.CategoryId == category.CategoryId)
+                    {
+                        <option value="@category.CategoryId" selected>@category.CategoryName</option>
+                    }
+                    else
+                    {
+                        <option value="@category.CategoryId">@category.CategoryName</option>
+                    }
+                }
+            }
+
+        </select>
+    </div>
+    <div class="form-group mb-4">
+        <label for="isFree">Khóa học miễn phí:</label>
+        <input type="checkbox" id="isFree" @(Model.IsFree == true ? "checked" : "")>
+    </div>
+    <div class="form-group mb-4">
+        <label for="price">Giá:</label>
+        <input type="number" class="form-control" id="price" placeholder="Nhập giá khóa học" step="0.01" value="@Model.Price">
+    </div>
+    <div class="form-group mb-4">
+        <label for="discount">Giảm Giá (%):</label>
+        <input type="number" class="form-control" id="discount" placeholder="Nhập phần trăm giảm giá" min="0" max="100" value="@Model.Discount">
+    </div>
+    <div class="form-group mb-4">
+        <label for="courseAvt">Ảnh đại diện:</label>
+        <input type="file" class="form-control-file" id="courseAvt" accept="image/*" value="@Model.Avt">
+    </div>
+    <div class="text-center mt-4">
+        <button class="btn btn-primary" id="addCourseBtn">Lưu Khóa Học</button>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('addCourseBtn').addEventListener('click', function () {
+        var courseId = @Model.CourseId;
+        var courseName = document.getElementById('courseName').value;
+        var courseDescription = document.getElementById('courseDescription').value;
+        var courseCategory = document.getElementById('courseSelect').value;
+        var isFree = document.getElementById('isFree').checked ? 1 : 0;
+        var price = parseFloat(document.getElementById('price').value) || 0;
+        var discount = parseInt(document.getElementById('discount').value) || 0;
+        var courseAvt = document.getElementById('courseAvt').files[0];
+
+        if (!courseName || !courseCategory) {
+            alert('Vui lòng nhập tất cả các trường bắt buộc.');
+            return;
+        }
+
+        // Tạo FormData để gửi dữ liệu đến server
+        var formData = new FormData();
+        formData.append("courseId", courseId);
+        formData.append('courseName', courseName);
+        formData.append('description', courseDescription);
+        formData.append('courseSelected', courseCategory);
+        formData.append('isFree', isFree);
+        formData.append('price', price);
+        formData.append('discount', discount);
+        formData.append('courseAvt', courseAvt); // Thêm file ảnh vào FormData
+
+        // Gửi dữ liệu đến server
+        $.ajax({
+            url: '/Course/Update',  // Đường dẫn đến controller và action của bạn
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                alert('Khóa học đã được sửa thành công!');
+                // Xóa form sau khi gửi
+                // document.getElementById('courseName').value = '';
+                // document.getElementById('courseDescription').value = '';
+                // document.getElementById('courseCategory').value = '';
+                // document.getElementById('isFree').checked = false;
+                // document.getElementById('price').value = '';
+                // document.getElementById('discount').value = '';
+                // document.getElementById('courseAvt').value = '';
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+                alert('Có lỗi xảy ra khi sửa khóa học.');
+            }
+        });
+    });
+</script>
+

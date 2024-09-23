@@ -26,74 +26,47 @@
         <!-- Sidebar End -->
         <!-- Content Start -->
         <div class="col-md-9">
-            <div class="wrapper mt-4">
-                <div class="container-fluid">
+            <h2>Bài tập</h2>
+            <table id="basic-datatables" class="display table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Tên bài</th>
+                        <th>Dạng bài</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                    <div class="container">
-                        <div class="page-inner">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card-d">
-                                        <div class="card-header">
-                                            <h4 class="card-title">Bài tập</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table id="basic-datatables" class="display table table-striped table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Id</th>
-                                                            <th>Tên bài</th>
-                                                            <th>Dạng bài</th>
-                                                            <th>Thao tác</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
+                    @{
+                        foreach (var exercise in Model)
+                        {
+                            string catResult = "";
+                            var catOfExs = _context.CategoryExercises.Where(c => c.ExerciseId == exercise.ExerciseId).ToList();
+                            if (catOfExs.Count() > 0)
+                            {
+                                catResult += _context.CategoryOfExercises.Find(catOfExs[0].CategoryId).CoeName;
+                                for (int i = 1; i < catOfExs.Count(); i++)
+                                    catResult += ", " + _context.CategoryOfExercises.Find(catOfExs[i].CategoryId).CoeName;
+                            }
+                            <tr>
+                                <td><a href="~/Exercise/Detail/@exercise.ExerciseId">@exercise.ExerciseId</a></td>
+                                <td><a href="~/Exercise/Detail/@exercise.ExerciseId">@exercise.Title</a></td>
+                                <td>@catResult</td>
+                                <td>
+                                    <a href="~/Exercise/Detail/@exercise.ExerciseId" class="btn btn-primary btn-sm">Chi tiết</a>
+                                    <a href="~/Exercise/Update/@exercise.ExerciseId" class="btn btn-primary btn-sm">Chỉnh sửa</a>
+                                    <a href="~/Exercise/Delete/@exercise.ExerciseId" class="btn btn-primary btn-sm">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    }
 
-                                                        @{
-                                                            foreach (var exercise in Model)
-                                                            {
-                                                                string catResult = "";
-                                                                var catOfExs = _context.CategoryExercises.Where(c => c.ExerciseId == exercise.ExerciseId).ToList();
-                                                                if (catOfExs.Count() > 0)
-                                                                {
-                                                                    catResult += _context.CategoryOfExercises.Find(catOfExs[0].CategoryId).CoeName;
-                                                                    for (int i = 1; i < catOfExs.Count(); i++)
-                                                                        catResult += ", " + _context.CategoryOfExercises.Find(catOfExs[i].CategoryId).CoeName;
-                                                                }
-                                                                <tr>
-                                                                    <td><a href="~/Exercise/Detail/@exercise.ExerciseId">@exercise.ExerciseId</a></td>
-                                                                    <td><a href="~/Exercise/Detail/@exercise.ExerciseId">@exercise.Title</a></td>
-                                                                    <td>@catResult</td>
-                                                                    <td>
-                                                                        <a href="~/Creater/DocumentDetail/@exercise.ExerciseId" class="btn btn-primary btn-sm">Chi tiết</a>
-                                                                        <a href="~/Creater/DocumentDetail/@exercise.ExerciseId" class="btn btn-primary btn-sm">Chỉnh sửa</a>
-                                                                        <a href="~/Creater/DocumentDetail/@exercise.ExerciseId" class="btn btn-primary btn-sm">Xóa</a>
-                                                                    </td>
-                                                                </tr>
-                                                            }
-                                                        }
-
-                                                        <!-- Thêm các hàng dữ liệu khác ở đây -->
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <!-- bor -->
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <!-- Custom template | don't include it in your project! -->
-                <!-- End Custom template -->
+                    <!-- Thêm các hàng dữ liệu khác ở đây -->
+                </tbody>
+            </table>
+            <div>
+                <a class="btn btn-info" href="~/Exercise/Upload">Thêm bài tập</a>
             </div>
         </div>
     </div>
@@ -110,12 +83,7 @@
 <script src="~/lib/easing/easing.min.js"></script>
 <script src="~/lib/waypoints/waypoints.min.js"></script>
 <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
-
-<!-- Template Javascript -->
 <script src="~/js/main.js"></script>
-<!-- jQuery -->
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-<!-- DataTables JS -->
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function () {

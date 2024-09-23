@@ -3,6 +3,7 @@ using LFYS_Project.Models;
 using System.Diagnostics.SymbolStore;
 using Microsoft.AspNetCore.Identity;
 using LFYS_Project.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LFYS_Project.Controllers
 {
@@ -24,10 +25,14 @@ namespace LFYS_Project.Controllers
             var document = _context.Documents.Find(id);
             return View(document);
         }
+
+        [Authorize(Roles = "Creater, Admin")]
         public IActionResult Upload()
         {
             return View();
         }
+
+        [Authorize(Roles = "Creater, Admin")]
         [HttpPost]
         public async Task<IActionResult> Upload(string title, string content, string selectedCourse)
         {
@@ -45,10 +50,44 @@ namespace LFYS_Project.Controllers
 
             return BadRequest();
         }
+
+        [Authorize(Roles = "Creater, Admin")]
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var document = _context.Documents.Find(id);
+            return View(document);
+        }
+
+        [Authorize(Roles = "Creater, Admin")]
+        [HttpPost]
+        public async Task<IActionResult> Update(int id, string title, string content, string selectedCourse)
+        {
+            if (ModelState.IsValid)
+            {
+                Document document = new Document();
+                document.DocumentId = id;
+                document.Title = title;
+                document.Description = content;
+                document.CategoryId = Convert.ToInt32(selectedCourse);
+                document.UserId = userManager.GetUserId(User);
+                _context.Documents.Update(document);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+
+            return BadRequest();
+        }
+
+
+        [Authorize(Roles = "Creater, Admin")]
         public IActionResult AddFile()
         {
             return View();
         }
+
+
+        [Authorize(Roles = "Creater, Admin")]
         [HttpPost]
         public async Task<IActionResult> AddFile(string title, string content, string selectedDocument)
         {

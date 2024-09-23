@@ -1,0 +1,99 @@
+﻿@using LFYS_Project.Models
+<style>
+    #videoPreview {
+        max-width: 50%; /* Đặt kích thước tối đa cho video */
+        width: 100%;
+        max-height: 50vh;
+        height: auto;
+        display: none; /* Ẩn mặc định */
+        margin: auto;
+        margin-top: 20px;
+    }
+</style>
+
+@{
+    ViewData["Title"] = "Upload Video";
+    WlfysProjContext _context = new WlfysProjContext();
+    var courses = _context.Courses.ToList();
+
+}
+
+<div class="container">
+    <h2 class="text-center my-5">Upload Video</h2>
+    <form id="videoUploadForm" enctype="multipart/form-data">
+        <div class="form-group mb-4">
+            <label for="courseSelect">Chọn khóa học:</label>
+            <select class="form-control" id="courseSelect" name="courseId" required>
+                <option value="">Chọn khóa học</option>
+                @{
+                    foreach(var course in courses)
+                    {
+                        <option value="@course.CourseId">@course.CourseName</option>
+
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group mb-4">
+            <label for="videoTitle">Nhập tiêu đề:</label>
+            <input type="text" class="form-control" id="videoTitle" name="title" placeholder="Nhập tiêu đề video" required>
+        </div>
+        <div class="form-group mb-4">
+            <label for="videoDescription">Nhập mô tả video:</label>
+            <textarea class="form-control" id="videoDescription" name="description" rows="5" placeholder="Nhập mô tả video" required></textarea>
+        </div>
+        <div class="form-group mb-4">
+            <label for="videoFile">Upload file video:</label>
+            <input type="file" class="form-control-file" id="videoFile" name="videoUrl" accept="video/*" required>
+        </div>
+        <div class="form-group mb-4">
+            <label for="videoPreview">Video demo:</label>
+            <video id="videoPreview" controls></video>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Upload Video</button>
+        </div>
+    </form>
+</div>
+
+<!-- JavaScript để xử lý file input và gửi form bằng AJAX -->
+<script>
+    document.getElementById('videoFile').addEventListener('change', function (event) {
+        var file = event.target.files[0];
+        if (file) {
+            var videoPreview = document.getElementById('videoPreview');
+            var url = URL.createObjectURL(file);
+            videoPreview.src = url;
+            videoPreview.style.display = 'block';
+        }
+    });
+
+    document.getElementById('videoUploadForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var formData = new FormData();
+        formData.append('courseId', document.getElementById('courseSelect').value);
+        formData.append('title', document.getElementById('videoTitle').value);
+        formData.append('description', document.getElementById('videoDescription').value);
+        formData.append('videoUrl', document.getElementById('videoFile').files[0]);
+
+        $.ajax({
+            url: '/Course/UploadVideo',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.success) {
+                    alert('Upload thành công!');
+                    // Có thể thêm logic để hiển thị video đã upload tại đây
+                } else {
+                    alert('Đã có lỗi xảy ra: ' + response.message);
+                }
+            },
+            error: function (error) {
+                alert('Lỗi trong quá trình upload, vui lòng thử lại.');
+            }
+        });
+    });
+</script>

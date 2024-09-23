@@ -110,7 +110,6 @@
         var title = document.getElementById('title').value;
         var content = quill.root.innerHTML;
         var selectedCourse = document.getElementById('courseSelect').value;
-        alert(content);
         // Gửi dữ liệu đến controller (sử dụng AJAX)
         $.ajax({
             url: '/Document/Upload',  // Đường dẫn đến controller và action của bạn

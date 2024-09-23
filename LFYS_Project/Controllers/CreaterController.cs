@@ -3,9 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using LFYS_Project.Data;
 using LFYS_Project.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace LFYS_Project.Controllers
 {
+    [Authorize(Roles = "Admin, Creater")]
     public class CreaterController : Controller
     {
         WlfysProjContext _context = new WlfysProjContext();
@@ -16,6 +19,7 @@ namespace LFYS_Project.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
         }
+
         public async Task<IActionResult> Document()
         {
             var user = await _userManager.GetUserAsync(User);
