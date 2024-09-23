@@ -36,7 +36,7 @@ namespace LFYS_Project.Models
                 // Biên dịch mã code
                 Process compiler = new Process();
                 compiler.StartInfo.FileName = "javac";
-                //compiler.StartInfo.Arguments = $"-source 1.8 -target 1.8 {fileName}";
+                compiler.StartInfo.Arguments = $"-source 1.8 -target 1.8 {fileName}";
                 compiler.StartInfo.RedirectStandardOutput = true;
                 compiler.StartInfo.RedirectStandardError = true;
                 compiler.StartInfo.UseShellExecute = false;
@@ -113,7 +113,7 @@ namespace LFYS_Project.Models
             int passedTests = result.Split("Passed").Length - 1;
             int totalTests = inputList.Count;
 
-            return (double) passedTests / totalTests * 100;
+            return (double) (passedTests / totalTests) * 100 ;
         }
     }
 }

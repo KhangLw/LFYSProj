@@ -2,8 +2,8 @@
 using LFYS_Project.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using System.Reflection.Metadata;
-using Microsoft.CodeAnalysis.Operations;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace LFYS_Project.Controllers
 {
@@ -12,11 +12,14 @@ namespace LFYS_Project.Controllers
     public class CourseController : Controller
     {
         private readonly WlfysProjContext _context = new WlfysProjContext();
-        private readonly UserManager<AppUser> userManager;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
         private readonly IWebHostEnvironment _env;
-        public CourseController(UserManager<AppUser> userManager, IWebHostEnvironment env)
+        public CourseController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IWebHostEnvironment env)
         {
-            this.userManager = userManager;
+            _userManager = userManager;
+            _roleManager = roleManager;
             _env = env;
         }
         //[HttpGet("Index")]
@@ -40,7 +43,7 @@ namespace LFYS_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> Add([FromForm] string courseName, [FromForm] string description, [FromForm] string courseSelected, string isFree, [FromForm] string price, [FromForm] string discount, IFormFile courseAvt)
         {
-            var user = userManager.GetUserAsync(User);
+            var user = _userManager.GetUserAsync(User);
             if (ModelState.IsValid)
             {
                 Course course = new Course();
@@ -51,7 +54,7 @@ namespace LFYS_Project.Controllers
                 course.Price = Convert.ToDouble(price);
                 course.Discount = Convert.ToInt32(discount);
                 course.Avt = courseAvt.FileName;
-                course.UserId = userManager.GetUserId(User);
+                course.UserId = _userManager.GetUserId(User);
                 _context.Courses.Add(course);
                 await _context.SaveChangesAsync();
                 return Ok();
@@ -71,7 +74,7 @@ namespace LFYS_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> Update([FromForm] string courseId, [FromForm] string courseName, [FromForm] string description, [FromForm] string courseSelected, string isFree, [FromForm] string price, [FromForm] string discount, IFormFile courseAvt)
         {
-            var user = userManager.GetUserAsync(User);
+            var user = _userManager.GetUserAsync(User);
             if (ModelState.IsValid)
             {
                 Course course = new Course();
@@ -83,7 +86,7 @@ namespace LFYS_Project.Controllers
                 course.Price = Convert.ToDouble(price);
                 course.Discount = Convert.ToInt32(discount);
                 course.Avt = courseAvt.FileName;
-                course.UserId = userManager.GetUserId(User);
+                course.UserId = _userManager.GetUserId(User);
                 _context.Courses.Update(course);
                 await _context.SaveChangesAsync();
                 return Ok();
@@ -99,9 +102,11 @@ namespace LFYS_Project.Controllers
 
         [Authorize(Roles = "Creater, Admin")]
         [HttpGet]
-        public IActionResult AddVideo()
+        public async Task<IActionResult> AddVideo()
         {
-            return View();
+            var user = await _userManager.GetUserAsync(User);
+            var courses = _context.Courses.Where(u => u.UserId == user.Id).Include(c => c.Category).ToList();
+            return View(courses);
         }
 
         [Authorize(Roles = "Creater, Admin")]

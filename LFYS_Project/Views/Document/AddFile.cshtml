@@ -1,4 +1,5 @@
 ﻿@using LFYS_Project.Models;
+@model IEnumerable<Document>
 @{
     WlfysProjContext _context = new WlfysProjContext();
     var documents = _context.Documents.ToList();
@@ -24,7 +25,7 @@
         <select class="form-control" id="courseSelect" required>
             <option value="">Chọn tài liệu</option>
             @{
-                foreach (var document in documents)
+                foreach (var document in Model)
                 {
                     <option value="@document.DocumentId">@document.Title</option>
                 }

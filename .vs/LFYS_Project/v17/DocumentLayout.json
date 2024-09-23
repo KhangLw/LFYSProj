@@ -1,45 +1,85 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Projects\\DACSKTPM\\LFYSProj\\",
+  "WorkspaceRootPath": "D:\\Code\\Khang\\LFYSProj\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\projects\\dacsktpm\\lfysproj\\lfys_project\\models\\excutecode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\models\\excutecode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\projects\\dacsktpm\\lfysproj\\lfys_project\\areas\\admin\\controllers\\homeadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\areas\\admin\\controllers\\homeadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\projects\\dacsktpm\\lfysproj\\lfys_project\\controllers\\exercisecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\controllers\\exercisecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\projects\\dacsktpm\\lfysproj\\lfys_project\\controllers\\executorcodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\controllers\\executorcodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\projects\\dacsktpm\\lfysproj\\lfys_project\\controllers\\documentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\controllers\\documentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\projects\\dacsktpm\\lfysproj\\lfys_project\\views\\document\\addfile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\views\\document\\addfile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\projects\\dacsktpm\\lfysproj\\lfys_project\\controllers\\creatercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\controllers\\creatercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\controllers\\creatercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\projects\\dacsktpm\\lfysproj\\lfys_project\\views\\creater\\exercise.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\views\\document\\addfile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\views\\document\\addfile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\controllers\\documentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\controllers\\documentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\views\\exercise\\resulttable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\views\\exercise\\resulttable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\controllers\\exercisecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\controllers\\exercisecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\views\\executorcode\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\views\\executorcode\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\controllers\\executorcodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\controllers\\executorcodecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\models\\excutecode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\models\\excutecode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\models\\wlfysprojcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\models\\wlfysprojcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\areas\\admin\\controllers\\homeadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\areas\\admin\\controllers\\homeadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\areas\\admin\\views\\homeadmin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\areas\\admin\\views\\homeadmin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\views\\creater\\exercise.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\views\\creater\\exercise.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\projects\\dacsktpm\\lfysproj\\lfys_project\\views\\creater\\course.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\views\\creater\\course.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\views\\creater\\course.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\projects\\dacsktpm\\lfysproj\\lfys_project\\views\\creater\\document.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|d:\\code\\khang\\lfysproj\\lfys_project\\views\\creater\\document.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{6CE3CD32-A014-47E6-8A0B-930C6BCFB282}|LFYS_Project\\LFYS_Project.csproj|solutionrelative:lfys_project\\views\\creater\\document.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -50,128 +90,246 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1165,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 10,
               "Title": "HomeAdminController.cs",
-              "DocumentMoniker": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Areas\\Admin\\Controllers\\HomeAdminController.cs",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Areas\\Admin\\Controllers\\HomeAdminController.cs",
               "RelativeDocumentMoniker": "LFYS_Project\\Areas\\Admin\\Controllers\\HomeAdminController.cs",
-              "ToolTip": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Areas\\Admin\\Controllers\\HomeAdminController.cs",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Areas\\Admin\\Controllers\\HomeAdminController.cs",
               "RelativeToolTip": "LFYS_Project\\Areas\\Admin\\Controllers\\HomeAdminController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAAAA4AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-19T05:45:09.733Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AddFile.cshtml",
-              "DocumentMoniker": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Views\\Document\\AddFile.cshtml",
-              "RelativeDocumentMoniker": "LFYS_Project\\Views\\Document\\AddFile.cshtml",
-              "ToolTip": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Views\\Document\\AddFile.cshtml",
-              "RelativeToolTip": "LFYS_Project\\Views\\Document\\AddFile.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-19T12:18:48.878Z",
+              "DocumentIndex": 0,
+              "Title": "CourseController.cs",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Controllers\\CourseController.cs",
+              "RelativeDocumentMoniker": "LFYS_Project\\Controllers\\CourseController.cs",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Controllers\\CourseController.cs",
+              "RelativeToolTip": "LFYS_Project\\Controllers\\CourseController.cs",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAwwGsAAABtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T07:24:30.891Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "DocumentController.cs",
-              "DocumentMoniker": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Controllers\\DocumentController.cs",
-              "RelativeDocumentMoniker": "LFYS_Project\\Controllers\\DocumentController.cs",
-              "ToolTip": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Controllers\\DocumentController.cs",
-              "RelativeToolTip": "LFYS_Project\\Controllers\\DocumentController.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAcwEQAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T12:15:34.21Z",
+              "Title": "ResultTable.cshtml",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Views\\Exercise\\ResultTable.cshtml",
+              "RelativeDocumentMoniker": "LFYS_Project\\Views\\Exercise\\ResultTable.cshtml",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Views\\Exercise\\ResultTable.cshtml",
+              "RelativeToolTip": "LFYS_Project\\Views\\Exercise\\ResultTable.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-23T07:07:23.998Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ExcuteCode.cs",
-              "DocumentMoniker": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Models\\ExcuteCode.cs",
-              "RelativeDocumentMoniker": "LFYS_Project\\Models\\ExcuteCode.cs",
-              "ToolTip": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Models\\ExcuteCode.cs",
-              "RelativeToolTip": "LFYS_Project\\Models\\ExcuteCode.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAA1wBUAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T11:56:51.547Z",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Views\\ExecutorCode\\Index.cshtml",
+              "RelativeDocumentMoniker": "LFYS_Project\\Views\\ExecutorCode\\Index.cshtml",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Views\\ExecutorCode\\Index.cshtml",
+              "RelativeToolTip": "LFYS_Project\\Views\\ExecutorCode\\Index.cshtml",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-23T07:06:59.057Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
+              "Title": "WlfysProjContext.cs",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Models\\WlfysProjContext.cs",
+              "RelativeDocumentMoniker": "LFYS_Project\\Models\\WlfysProjContext.cs",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Models\\WlfysProjContext.cs",
+              "RelativeToolTip": "LFYS_Project\\Models\\WlfysProjContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T06:25:09.513Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Startup.cs",
+              "RelativeDocumentMoniker": "LFYS_Project\\Startup.cs",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Startup.cs",
+              "RelativeToolTip": "LFYS_Project\\Startup.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T06:23:26.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ScaffoldingReadMe.txt",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\ScaffoldingReadMe.txt",
+              "RelativeDocumentMoniker": "LFYS_Project\\ScaffoldingReadMe.txt",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\ScaffoldingReadMe.txt",
+              "RelativeToolTip": "LFYS_Project\\ScaffoldingReadMe.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-09-23T06:23:25.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\appsettings.json",
+              "RelativeDocumentMoniker": "LFYS_Project\\appsettings.json",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\appsettings.json",
+              "RelativeToolTip": "LFYS_Project\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-23T06:22:10.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "ExecutorCodeController.cs",
-              "DocumentMoniker": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Controllers\\ExecutorCodeController.cs",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Controllers\\ExecutorCodeController.cs",
               "RelativeDocumentMoniker": "LFYS_Project\\Controllers\\ExecutorCodeController.cs",
-              "ToolTip": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Controllers\\ExecutorCodeController.cs",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Controllers\\ExecutorCodeController.cs",
               "RelativeToolTip": "LFYS_Project\\Controllers\\ExecutorCodeController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwCEAAAAjAAAAAAAAAA==",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-19T11:56:29.961Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ExcuteCode.cs",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Models\\ExcuteCode.cs",
+              "RelativeDocumentMoniker": "LFYS_Project\\Models\\ExcuteCode.cs",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Models\\ExcuteCode.cs",
+              "RelativeToolTip": "LFYS_Project\\Models\\ExcuteCode.cs",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAAAHMAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T11:56:51.547Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Program.cs",
+              "RelativeDocumentMoniker": "LFYS_Project\\Program.cs",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Program.cs",
+              "RelativeToolTip": "LFYS_Project\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T06:23:27.341Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Areas\\Admin\\Views\\HomeAdmin\\Index.cshtml",
+              "RelativeDocumentMoniker": "LFYS_Project\\Areas\\Admin\\Views\\HomeAdmin\\Index.cshtml",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Areas\\Admin\\Views\\HomeAdmin\\Index.cshtml",
+              "RelativeToolTip": "LFYS_Project\\Areas\\Admin\\Views\\HomeAdmin\\Index.cshtml",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAAAHkAAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-23T06:29:03.408Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "LFYS_Project\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "LFYS_Project\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAAAAwAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-23T06:38:49.958Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "AddFile.cshtml",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Views\\Document\\AddFile.cshtml",
+              "RelativeDocumentMoniker": "LFYS_Project\\Views\\Document\\AddFile.cshtml",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Views\\Document\\AddFile.cshtml",
+              "RelativeToolTip": "LFYS_Project\\Views\\Document\\AddFile.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-19T12:18:48.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DocumentController.cs",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Controllers\\DocumentController.cs",
+              "RelativeDocumentMoniker": "LFYS_Project\\Controllers\\DocumentController.cs",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Controllers\\DocumentController.cs",
+              "RelativeToolTip": "LFYS_Project\\Controllers\\DocumentController.cs",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAwwFYAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-19T12:15:34.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "ExerciseController.cs",
-              "DocumentMoniker": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Controllers\\ExerciseController.cs",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Controllers\\ExerciseController.cs",
               "RelativeDocumentMoniker": "LFYS_Project\\Controllers\\ExerciseController.cs",
-              "ToolTip": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Controllers\\ExerciseController.cs",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Controllers\\ExerciseController.cs",
               "RelativeToolTip": "LFYS_Project\\Controllers\\ExerciseController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAkAAAAAAAAAA==",
+              "ViewState": "AQIAAFgAAAAAAAAAAADwv2QAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-19T11:33:16.211Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 18,
               "Title": "Course.cshtml",
-              "DocumentMoniker": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Views\\Creater\\Course.cshtml",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Views\\Creater\\Course.cshtml",
               "RelativeDocumentMoniker": "LFYS_Project\\Views\\Creater\\Course.cshtml",
-              "ToolTip": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Views\\Creater\\Course.cshtml",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Views\\Creater\\Course.cshtml",
               "RelativeToolTip": "LFYS_Project\\Views\\Creater\\Course.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-19T09:03:43.841Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T09:03:43.841Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 17,
               "Title": "Exercise.cshtml",
-              "DocumentMoniker": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Views\\Creater\\Exercise.cshtml",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Views\\Creater\\Exercise.cshtml",
               "RelativeDocumentMoniker": "LFYS_Project\\Views\\Creater\\Exercise.cshtml",
-              "ToolTip": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Views\\Creater\\Exercise.cshtml",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Views\\Creater\\Exercise.cshtml",
               "RelativeToolTip": "LFYS_Project\\Views\\Creater\\Exercise.cshtml",
               "ViewState": "AgIAADYAAAAAAAAAAAAAADkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-19T09:03:07.255Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-19T09:03:07.255Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 19,
               "Title": "Document.cshtml",
-              "DocumentMoniker": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Views\\Creater\\Document.cshtml",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Views\\Creater\\Document.cshtml",
               "RelativeDocumentMoniker": "LFYS_Project\\Views\\Creater\\Document.cshtml",
-              "ToolTip": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Views\\Creater\\Document.cshtml",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Views\\Creater\\Document.cshtml",
               "RelativeToolTip": "LFYS_Project\\Views\\Creater\\Document.cshtml",
               "ViewState": "AgIAABgAAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -179,26 +337,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "CreaterController.cs",
-              "DocumentMoniker": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Controllers\\CreaterController.cs",
+              "DocumentMoniker": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Controllers\\CreaterController.cs",
               "RelativeDocumentMoniker": "LFYS_Project\\Controllers\\CreaterController.cs",
-              "ToolTip": "D:\\Projects\\DACSKTPM\\LFYSProj\\LFYS_Project\\Controllers\\CreaterController.cs",
+              "ToolTip": "D:\\Code\\Khang\\LFYSProj\\LFYS_Project\\Controllers\\CreaterController.cs",
               "RelativeToolTip": "LFYS_Project\\Controllers\\CreaterController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAjAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-19T08:59:16.524Z",
               "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 1165,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }

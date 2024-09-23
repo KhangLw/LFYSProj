@@ -35,13 +35,13 @@
                                             @{
                                                 foreach (var result in Model)
                                                 {
-                                                    
+
                                                     <tr>
                                                         <td>@result.SubmitTime</td>
                                                         <td><a href="~/Exercise/Detail/@result.Exercise.ExerciseId">@result.Exercise.Title</a></td>
                                                         <td>Khang</td>
                                                         <td>@result.Language</td>
-                                                        <td>@(result.Complete)%</td>
+                                                        <td style="color:@(result.Complete < 50 ? "red" : result.Complete < 100 ? "yellow" : "green")">@(result.Complete)%</td>
                                                         <td>0ms</td>
                                                         <td>0MB</td>
                                                     </tr>

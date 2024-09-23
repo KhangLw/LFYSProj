@@ -4,16 +4,19 @@ using System.Diagnostics.SymbolStore;
 using Microsoft.AspNetCore.Identity;
 using LFYS_Project.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace LFYS_Project.Controllers
 {
     public class DocumentController : Controller
     {
         WlfysProjContext _context = new WlfysProjContext();
-        private readonly UserManager<AppUser> userManager;
-        public DocumentController(UserManager<AppUser> userManager)
+        private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public DocumentController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            this.userManager = userManager;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
         public IActionResult Index()
         {
@@ -42,7 +45,7 @@ namespace LFYS_Project.Controllers
                 document.Title = title;
                 document.Description = content;
                 document.CategoryId = Convert.ToInt32(selectedCourse);
-                document.UserId = userManager.GetUserId(User);
+                document.UserId = _userManager.GetUserId(User);
                 _context.Documents.Add(document);
                 await _context.SaveChangesAsync();
                 return Ok();
@@ -70,7 +73,7 @@ namespace LFYS_Project.Controllers
                 document.Title = title;
                 document.Description = content;
                 document.CategoryId = Convert.ToInt32(selectedCourse);
-                document.UserId = userManager.GetUserId(User);
+                document.UserId = _userManager.GetUserId(User);
                 _context.Documents.Update(document);
                 await _context.SaveChangesAsync();
                 return Ok();
@@ -81,9 +84,11 @@ namespace LFYS_Project.Controllers
 
 
         [Authorize(Roles = "Creater, Admin")]
-        public IActionResult AddFile()
+        public async Task<IActionResult> AddFile()
         {
-            return View();
+            var user = await _userManager.GetUserAsync(User);
+            var documents = _context.Documents.Where(u => u.UserId == user.Id).Include(d => d.Category).ToList();
+            return View(documents);
         }
 
 

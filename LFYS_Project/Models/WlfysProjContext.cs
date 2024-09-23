@@ -55,7 +55,7 @@ public partial class WlfysProjContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=KHANGLAP;Initial Catalog=WLFYS_Proj;Integrated Security=True;Encrypt=False");
+        => optionsBuilder.UseSqlServer("Data Source=HOAMY;Initial Catalog=WLFYS_Proj;Integrated Security=True;Encrypt=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -132,7 +132,7 @@ public partial class WlfysProjContext : DbContext
 
         modelBuilder.Entity<Badge>(entity =>
         {
-            entity.HasKey(e => e.BadgeId).HasName("PK__Badge__E7989656337E0891");
+            entity.HasKey(e => e.BadgeId).HasName("PK__Badge__E7989656C98C98C9");
 
             entity.ToTable("Badge");
 
@@ -150,7 +150,7 @@ public partial class WlfysProjContext : DbContext
 
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.CategoryId).HasName("PK__Category__D54EE9B4DA4A48D8");
+            entity.HasKey(e => e.CategoryId).HasName("PK__Category__D54EE9B400930229");
 
             entity.ToTable("Category");
 
@@ -162,7 +162,7 @@ public partial class WlfysProjContext : DbContext
 
         modelBuilder.Entity<CategoryExercise>(entity =>
         {
-            entity.HasKey(e => e.CeId).HasName("PK__Category__DD9025CD4D500BFC");
+            entity.HasKey(e => e.CeId).HasName("PK__Category__DD9025CDF70A9464");
 
             entity.ToTable("CategoryExercise");
 
@@ -181,7 +181,7 @@ public partial class WlfysProjContext : DbContext
 
         modelBuilder.Entity<CategoryOfExercise>(entity =>
         {
-            entity.HasKey(e => e.CoeId).HasName("PK__Category__93E65D0055C8328C");
+            entity.HasKey(e => e.CoeId).HasName("PK__Category__93E65D0044CFAA90");
 
             entity.ToTable("CategoryOfExercise");
 
@@ -193,7 +193,7 @@ public partial class WlfysProjContext : DbContext
 
         modelBuilder.Entity<Course>(entity =>
         {
-            entity.HasKey(e => e.CourseId).HasName("PK__Course__8F1EF7AE20C29540");
+            entity.HasKey(e => e.CourseId).HasName("PK__Course__8F1EF7AE49CE0848");
 
             entity.ToTable("Course");
 
@@ -229,7 +229,7 @@ public partial class WlfysProjContext : DbContext
 
         modelBuilder.Entity<Document>(entity =>
         {
-            entity.HasKey(e => e.DocumentId).HasName("PK__Document__9666E8AC4265EF08");
+            entity.HasKey(e => e.DocumentId).HasName("PK__Document__9666E8AC78946A6B");
 
             entity.ToTable("Document");
 
@@ -260,7 +260,7 @@ public partial class WlfysProjContext : DbContext
 
         modelBuilder.Entity<Exercise>(entity =>
         {
-            entity.HasKey(e => e.ExerciseId).HasName("PK__Exercise__C121418E7DE0BCD9");
+            entity.HasKey(e => e.ExerciseId).HasName("PK__Exercise__C121418E58B4753A");
 
             entity.ToTable("Exercise");
 
@@ -287,7 +287,7 @@ public partial class WlfysProjContext : DbContext
 
         modelBuilder.Entity<FileDocument>(entity =>
         {
-            entity.HasKey(e => e.FiledocId).HasName("PK__FileDocu__6070B1A8A395D068");
+            entity.HasKey(e => e.FiledocId).HasName("PK__FileDocu__6070B1A80322C209");
 
             entity.ToTable("FileDocument");
 
@@ -307,7 +307,7 @@ public partial class WlfysProjContext : DbContext
 
         modelBuilder.Entity<Notification>(entity =>
         {
-            entity.HasKey(e => e.NotificationId).HasName("PK__Notifica__E059842FF464EBAB");
+            entity.HasKey(e => e.NotificationId).HasName("PK__Notifica__E059842F2C845D83");
 
             entity.ToTable("Notification");
 
@@ -326,7 +326,7 @@ public partial class WlfysProjContext : DbContext
 
         modelBuilder.Entity<ResultTable>(entity =>
         {
-            entity.HasKey(e => e.ResultId).HasName("PK__ResultTa__AFB3C31621FDEC74");
+            entity.HasKey(e => e.ResultId).HasName("PK__ResultTa__AFB3C316497A204A");
 
             entity.ToTable("ResultTable");
 
@@ -348,12 +348,12 @@ public partial class WlfysProjContext : DbContext
 
             entity.HasOne(d => d.Exercise).WithMany(p => p.ResultTables)
                 .HasForeignKey(d => d.ExerciseId)
-                .HasConstraintName("FK__ResultTabl__code__5DCAEF64");
+                .HasConstraintName("FK__ResultTabl__code__1BC821DD");
         });
 
         modelBuilder.Entity<Test>(entity =>
         {
-            entity.HasKey(e => e.TestId).HasName("PK__Test__F3FF1C0286FDD18A");
+            entity.HasKey(e => e.TestId).HasName("PK__Test__F3FF1C0280255E74");
 
             entity.ToTable("Test");
 
@@ -368,12 +368,12 @@ public partial class WlfysProjContext : DbContext
 
             entity.HasOne(d => d.Exercise).WithMany(p => p.Tests)
                 .HasForeignKey(d => d.ExerciseId)
-                .HasConstraintName("FK__Test__output__5AEE82B9");
+                .HasConstraintName("FK__Test__output__6FE99F9F");
         });
 
         modelBuilder.Entity<UserBadge>(entity =>
         {
-            entity.HasKey(e => e.UserbadgeId).HasName("PK__UserBadg__B0DE40849BE15E8B");
+            entity.HasKey(e => e.UserbadgeId).HasName("PK__UserBadg__B0DE4084C54AC5CA");
 
             entity.ToTable("UserBadge");
 
@@ -394,7 +394,7 @@ public partial class WlfysProjContext : DbContext
 
         modelBuilder.Entity<Video>(entity =>
         {
-            entity.HasKey(e => e.VideoId).HasName("PK__Video__E8F11E102C013749");
+            entity.HasKey(e => e.VideoId).HasName("PK__Video__E8F11E10C1AA0601");
 
             entity.ToTable("Video");
 
