@@ -1,5 +1,5 @@
-﻿@using LFYS_Project.Models;
-@using Microsoft.EntityFrameworkCore;
+﻿@using LFYS_Project.Models
+@using Microsoft.EntityFrameworkCore
 @{
     WlfysProjContext _context = new WlfysProjContext();
     var exercises = _context.Exercises.ToList();
@@ -56,17 +56,16 @@
                                                 for (int i = 1; i < catOfExs.Count(); i++)
                                                     catResult += ", " + _context.CategoryOfExercises.Find(catOfExs[i].CategoryId).CoeName;
                                             }
-                                            <tr>
-                                                <td><a href="~/Exercise/Detail/@exercise.ExerciseId">@exercise.ExerciseId</a></td>
-                                                <td><a href="~/Exercise/Detail/@exercise.ExerciseId">@exercise.Title</a></td>
-                                                <td>@catResult</td>
-                                                <td>@exercise.Ac</td>
-                                                <td>Done</td>
-                                                <td class="d-flex justify-content-center">
-                                                    <button class="btn btn-outline-danger"><i class="fa fa-heart" onclick=""></i><a href="~/Exercise/Update/@exercise.ExerciseId">Update</a></button>
-                                                    <button class="btn btn-outline-danger"><i class="fa fa-heart"></i>Delete</button>
-                                                </td>
-                                            </tr>
+                                                    <tr>
+                                                        <td><a href="~/Exercise/Detail/@exercise.ExerciseId">@exercise.ExerciseId</a></td>
+                                                        <td><a href="~/Exercise/Detail/@exercise.ExerciseId">@exercise.Title</a></td>
+                                                        <td>@catResult</td>
+                                                        <td>@exercise.Ac</td>
+                                                        <td class="d-flex justify-content-center">
+                                                            <a class="btn btn-outline-danger" href="~/Exercise/Update/@exercise.ExerciseId"><i class="fa fa-heart" onclick=""></i>Chỉnh sửa</a>
+                                                            <button class="btn btn-outline-danger delete-ex" data-id="@exercise.ExerciseId">Xóa</button>
+                                                        </td>
+                                                    </tr>
                                         }
                                     }
                                 </tbody>
@@ -115,18 +114,18 @@
 
                                     @foreach (var document in docs)
                                     {
-                                        <tr>
-                                            <td>@document.DocumentId</td>
-                                            <td>@document.Title</td>
-                                            <td>@_context.Categories.Find(document.CategoryId).CategoryName</td>
-                                            <td>@document.CreatedAt</td>
-                                            <td>@document.UpdatedAt</td>
-                                            <td>@users.Where(u => u.Id == document.UserId).Select(u => u.Name).ToList()[0]</td>
-                                            <td class="d-flex justify-content-center align-items-center">
-                                                <button class="btn btn-outline-danger"><i class="fa fa-heart"></i><a href="~/Document/Update/@document.DocumentId">Update</a></button>
-                                                <button class="btn btn-outline-danger"><i class="fa fa-heart"></i>Delete</button>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>@document.DocumentId</td>
+                                                <td>@document.Title</td>
+                                                <td>@_context.Categories.Find(document.CategoryId).CategoryName</td>
+                                                <td>@document.CreatedAt</td>
+                                                <td>@document.UpdatedAt</td>
+                                                <td>@users.Where(u => u.Id == document.UserId).Select(u => u.Name).ToList()[0]</td>
+                                                <td class="d-flex justify-content-center align-items-center">
+                                                    <a class="btn btn-outline-info"  href="~/Document/Update/@document.DocumentId"> Chỉnh sửa</a>
+                                                    <button class="btn btn-outline-danger delete-doc" data-id="@document.DocumentId">Xóa</button>
+                                                </td>
+                                            </tr>
                                     }
 
                                 </tbody>
@@ -250,20 +249,19 @@
                                     @{
                                         foreach (var user in users)
                                         {
-                                            <tr>
-                                                <td>@user.Id</td>
-                                                <td>@user.Name</td>
-                                                <td>@user.Address</td>
-                                                <td>@user.UserName</td>
-                                                <th>@user.Email</th>
-                                                <td class="d-flex justify-content-center align-items-center">
-                                                    <button class="btn btn-outline-danger"><i class="fa fa-heart"></i>Update</button>
-                                                    <button class="btn btn-outline-danger"><i class="fa fa-heart"></i>Delete</button>
-                                                </td>
-                                            </tr>
+                                                    <tr>
+                                                        <td>@user.Id</td>
+                                                        <td>@user.Name</td>
+                                                        <td>@user.Address</td>
+                                                        <td>@user.UserName</td>
+                                                        <th>@user.Email</th>
+                                                        <td class="d-flex justify-content-center align-items-center">
+                                                            <button class="btn btn-outline-danger"><i class="fa fa-heart"></i>Chỉnh sửa</button>
+                                                            <button class="btn btn-outline-danger delete-user" data-id="@user.Id">Xóa</button>
+                                                        </td>
+                                                    </tr>
                                         }
                                     }
-
 
                                 </tbody>
                             </table>
@@ -274,3 +272,70 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.querySelectorAll('.delete-ex').forEach(function (button) {
+        button.addEventListener('click', function () {
+            var courseId = $(this).data('id');  
+
+            if (confirm("Bạn có chắc chắn muốn xóa khóa học này?")) {  
+                $.ajax({
+                    url: '/Exercise/Delete',  // Đường dẫn tới action Delete
+                    type: 'POST',
+                    data: { exerciseId: courseId },  // Truyền id của file qua AJAX
+                    success: function (response) {
+                        alert(response.message);  // Thông báo khi xóa thành công
+                        // Xóa phần tử DOM chứa file tương ứng
+                        $('button[data-id="' + courseId + '"]').closest('tr').remove();  // Xóa hàng trong bảng
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi xóa bài tập.");
+                    }
+                });
+            }
+        });
+    });
+
+    document.querySelectorAll('.delete-doc').forEach(function (button) {
+        button.addEventListener('click', function () {
+            var courseId = $(this).data('id');  // Lấy courseId từ thuộc tính data-id của phần tử
+
+            if (confirm("Bạn có chắc chắn muốn xóa khóa học này?")) {  // Hiển thị xác nhận trước khi xóa
+                $.ajax({
+                    url: '/Document/Delete',  // Đường dẫn tới action Delete
+                    type: 'POST',
+                    data: { id: courseId },  // Truyền id của file qua AJAX
+                    success: function (response) {
+                        alert(response.message);  // Thông báo khi xóa thành công
+                        // Xóa phần tử DOM chứa file tương ứng
+                        $('button[data-id="' + courseId + '"]').closest('tr').remove();  // Xóa hàng trong bảng
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi xóa tài liệu.");
+                    }
+                });
+            }
+        });
+    });
+    document.querySelectorAll('.delete-user').forEach(function (button) {
+        button.addEventListener('click', function () {
+            var courseId = $(this).data('id');  // Lấy courseId từ thuộc tính data-id của phần tử
+
+            if (confirm("Bạn có chắc chắn muốn xóa khóa học này?")) {  // Hiển thị xác nhận trước khi xóa
+                $.ajax({
+                    url: '/Account/Delete',  // Đường dẫn tới action Delete
+                    type: 'POST',
+                    data: { id: courseId },  // Truyền id của file qua AJAX
+                    success: function (response) {
+                        alert(response.message);  // Thông báo khi xóa thành công
+                        // Xóa phần tử DOM chứa file tương ứng
+                        $('button[data-id="' + courseId + '"]').closest('tr').remove();  // Xóa hàng trong bảng
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi xóa người dùng.");
+                    }
+                });
+            }
+        });
+    });
+</script>

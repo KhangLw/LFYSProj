@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LFYS_Project.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class HomeAdminController : Controller
     {
         public IActionResult Index()

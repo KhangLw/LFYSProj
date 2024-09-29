@@ -1,4 +1,5 @@
-﻿using LFYS_Project.Models;
+﻿using LFYS_Project.Data;
+using LFYS_Project.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -67,16 +68,12 @@ namespace LFYS_Project.Controllers
                 ex.CreatedAt = DateTime.Now;
                 ex.UpdatedAt = DateTime.Now;
                 ex.UserId = userManager.GetUserId(User);
-
                 _context.Exercises.Update(ex);
                 await _context.SaveChangesAsync();
-
                 var catExs = _context.CategoryExercises.Where(c => c.ExerciseId == model.Id).ToList();
                 _context.CategoryExercises.RemoveRange(catExs);
-
                 var tests = _context.Tests.Where(t => t.ExerciseId == model.Id).ToList();
                 _context.Tests.RemoveRange(tests);
-
                 foreach (var category in model.Categories)
                 {
                     CategoryExercise catOfEx = new CategoryExercise();
@@ -125,7 +122,7 @@ namespace LFYS_Project.Controllers
                     catOfEx.ExerciseId = ex.ExerciseId;
                     _context.CategoryExercises.Add(catOfEx);
                 }
-                foreach(var test in model.TestCases)
+                foreach (var test in model.TestCases)
                 {
                     Test tst = new Test();
                     tst.ExerciseId = ex.ExerciseId;
@@ -138,7 +135,25 @@ namespace LFYS_Project.Controllers
             }
             return BadRequest(new { success = false, message = "Invalid data" });
         }
+        [HttpPost]
+        public async Task<IActionResult> Delete(int exerciseId)
+        {
+            var exercise = await _context.Exercises.FindAsync(exerciseId);
+            if (exercise == null)
+            {
+                return NotFound(new { success = false, message = "Bài tập không tồn tại" });
+            }
+            var categoryExercises = _context.CategoryExercises.Where(c => c.ExerciseId == exerciseId).ToList();
+            _context.CategoryExercises.RemoveRange(categoryExercises);
+            var testCases = _context.Tests.Where(t => t.ExerciseId == exerciseId).ToList();
+            _context.Tests.RemoveRange(testCases);
+            _context.Exercises.Remove(exercise);
+            await _context.SaveChangesAsync();
+            return Ok(new { success = true, message = "Xóa bài tập thành công" });
+        }
     }
+
+
     public class DocumentViewModelUpdate
     {
         public int Id { get; set; }

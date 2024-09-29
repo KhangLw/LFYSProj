@@ -34,6 +34,7 @@ namespace LFYS_Project.Controllers
             var course = _context.Courses.Find(id);
             return View(course);
         }
+
         [Authorize(Roles = "Creater, Admin")]
         public IActionResult Upload()
         {
@@ -94,6 +95,24 @@ namespace LFYS_Project.Controllers
             return BadRequest();
         }
 
+        [Authorize(Roles = "Creater, Admin")]
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            // Tìm course dựa trên ID
+            var course = await _context.Courses.FindAsync(id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+            var video = _context.Videos.Where(v => v.CourseId == id).ToList();
+            _context.Videos.RemoveRange(video);
+            _context.Courses.Remove(course);
+            await _context.SaveChangesAsync();
+
+            // Trả về kết quả sau khi xóa thành công
+            return Ok(new { message = "Khóa học đã được xóa thành công" });
+        }
         public IActionResult Video(int id = 0)
         {
             var video = _context.Videos.Find(id);
@@ -113,32 +132,21 @@ namespace LFYS_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadVideo(IFormFile videoUrl, string title, string description, string courseId)
         {
-            // Kiểm tra dữ liệu nhập vào
             if (string.IsNullOrEmpty(courseId) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(description) || videoUrl == null)
             {
                 return Json(new { success = false, message = "Vui lòng điền đầy đủ thông tin." });
             }
-
-            // Đường dẫn lưu video
             var uploadsFolder = Path.Combine(_env.WebRootPath, "uploads", "videos");
-
-            // Tạo thư mục nếu chưa có
             if (!Directory.Exists(uploadsFolder))
             {
                 Directory.CreateDirectory(uploadsFolder);
             }
-
-            // Tạo tên file duy nhất
             var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(videoUrl.FileName);
             var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-            // Lưu file video vào thư mục
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
                 await videoUrl.CopyToAsync(fileStream);
             }
-
-            // Lưu file vào db
             var video = new Video
             {
                 CourseId = Convert.ToInt32(courseId),
@@ -150,7 +158,6 @@ namespace LFYS_Project.Controllers
             };
             _context.Videos.Add(video);
             await _context.SaveChangesAsync();
-            // Trả về kết quả JSON
             return Json(new
             {
                 success = true,
@@ -170,32 +177,22 @@ namespace LFYS_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateVideo(IFormFile videoUrl, string title, string description, string courseId, string videoId)
         {
-            // Kiểm tra dữ liệu nhập vào
             if (string.IsNullOrEmpty(courseId) || string.IsNullOrEmpty(title) || string.IsNullOrEmpty(description) || videoUrl == null)
             {
                 return Json(new { success = false, message = "Vui lòng điền đầy đủ thông tin." });
             }
-
-            // Đường dẫn lưu video
             var uploadsFolder = Path.Combine(_env.WebRootPath, "uploads", "videos");
 
-            // Tạo thư mục nếu chưa có
             if (!Directory.Exists(uploadsFolder))
             {
                 Directory.CreateDirectory(uploadsFolder);
             }
-
-            // Tạo tên file duy nhất
             var uniqueFileName = Path.GetRandomFileName() + Path.GetExtension(videoUrl.FileName);
             var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-            // Lưu file video vào thư mục
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
                 await videoUrl.CopyToAsync(fileStream);
             }
-
-            // Lưu file vào db
             var video = new Video
             {
                 VideoId = Convert.ToInt32(videoId),
@@ -208,13 +205,27 @@ namespace LFYS_Project.Controllers
             };
             _context.Videos.Update(video);
             await _context.SaveChangesAsync();
-            // Trả về kết quả JSON
             return Json(new
             {
                 success = true,
                 message = "Upload video thành công!",
                 videoPath = $"/uploads/videos/{uniqueFileName}"
             });
+        }
+        [Authorize(Roles = "Creater, Admin")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteVideo(int id)
+        {
+            var video = await _context.Videos.FindAsync(id);
+            if (video == null)
+            {
+                return NotFound();
+            }
+            _context.Videos.Remove(video);
+            await _context.SaveChangesAsync();
+
+            // Trả về kết quả sau khi xóa thành công
+            return Ok(new { message = "Video đã được xóa thành công" });
         }
     }
 }

@@ -10,13 +10,9 @@ namespace LFYS_Project.Models
             string fileName = "TempProgram.java";
             string className = "TempProgram";
             string output = "";
-            // Regex để tìm tên class
             string pattern = @"class\s+([a-zA-Z_][a-zA-Z0-9_]*)";
             Regex regex = new Regex(pattern);
-
-            // Tìm kết quả
             Match match = regex.Match(code);
-
             if (match.Success)
             {
                 fileName = match.Groups[1].Value + ".java";
@@ -30,10 +26,7 @@ namespace LFYS_Project.Models
 
             try
             {
-                // Viết mã code vào file tạm thời
                 File.WriteAllText(fileName, code);
-
-                // Biên dịch mã code
                 Process compiler = new Process();
                 compiler.StartInfo.FileName = "javac";
                 compiler.StartInfo.Arguments = $"-source 1.8 -target 1.8 {fileName}";
@@ -48,8 +41,6 @@ namespace LFYS_Project.Models
                 {
                     return "Compilation Failed:\n" + compiler.StandardError.ReadToEnd();
                 }
-
-                // Thực thi mã code đã biên dịch với mỗi input trong danh sách
                 for (int i = 0; i < inputDataList.Count; i++)
                 {
                     Process executor = new Process();
@@ -66,8 +57,6 @@ namespace LFYS_Project.Models
                     {
                         writer.WriteLine(inputDataList[i]); // Truyền input hiện tại
                     }
-
-                    // Đọc output từ chương trình
                     string programOutput = executor.StandardOutput.ReadToEnd();
                     programOutput += executor.StandardError.ReadToEnd();
                     executor.WaitForExit();

@@ -3,6 +3,8 @@
 @{
     WlfysProjContext _context = new WlfysProjContext();
     var categories = _context.Categories.ToList();
+    var fileDocs = _context.FileDocuments.Where(f => f.DocumentId == Model.DocumentId).OrderBy(f => f.FiledocId).ToList();
+
 }
 <!-- Hỗ trợ trình biên soạn -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-alpha/dist/katex.min.css">
@@ -27,7 +29,7 @@
             @{
                 foreach (var category in categories)
                 {
-                    if(category.CategoryId == Model.CategoryId)
+                    if (category.CategoryId == Model.CategoryId)
                     {
                         <option value="@category.CategoryId" selected>@category.CategoryName</option>
                     }
@@ -53,6 +55,26 @@
     </div>
     <div class="text-center mt-4">
         <button class="btn btn-primary" id="submitBtn">Sửa nội dung</button>
+    </div>
+</div>
+<div class="container mt-5">
+
+    <div class="col-md-6 document-section-list">
+        <h3 class="mb-4">Danh Sách Mục Tài Liệu</h3>
+        <div class="list-group">
+            @{
+                foreach (var fileDoc in fileDocs)
+                {
+                    <div class="col-md-12 d-flex" >
+                        <a href="~/Document/UpdateFile/@fileDoc.FiledocId" class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">@fileDoc.FileTitle</h5>
+                        </a>
+                        <button class="btn btn-primary btn-sm delete-file" data-id="@fileDoc.FiledocId">Xóa</button>
+                    </div>
+
+                }
+            }
+        </div>
     </div>
 </div>
 
@@ -123,7 +145,7 @@
         $.ajax({
             url: '/Document/Update',  // Đường dẫn đến controller và action của bạn
             type: 'POST',
-            data: {id: id, title: title, content: content, selectedCourse: selectedCourse },
+            data: { id: id, title: title, content: content, selectedCourse: selectedCourse },
             success: function (response) {
                 alert('Nội dung đã được sửa thành công!');
             },
@@ -133,4 +155,27 @@
             }
         });
     });
+
+    document.querySelectorAll('.delete-file').forEach(function (button) {
+        button.addEventListener('click', function () {
+            var courseId = $(this).data('id');  // Lấy courseId từ thuộc tính data-id của phần tử
+
+            if (confirm("Bạn có chắc chắn muốn xóa khóa học này?")) {  // Hiển thị xác nhận trước khi xóa
+                $.ajax({
+                    url: '/Document/DeleteFile',  // Đường dẫn tới action Delete
+                    type: 'POST',
+                    data: { id: courseId },  // Truyền id của file qua AJAX
+                    success: function (response) {
+                        alert(response.message);  // Thông báo khi xóa thành công
+                        // Xóa phần tử DOM chứa file tương ứng
+                        $('button[data-id="' + courseId + '"]').closest('tr').remove();  // Xóa hàng trong bảng
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi xóa khóa học.");
+                    }
+                });
+            }
+        });
+    });
+
 </script>

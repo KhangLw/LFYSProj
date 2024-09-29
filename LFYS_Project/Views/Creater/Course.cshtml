@@ -51,7 +51,7 @@
                                 <td>
                                     <a href="~/Course/Detail/@course.CourseId" class="btn btn-primary btn-sm">Chi tiết</a>
                                     <a href="~/Course/Update/@course.CourseId" class="btn btn-primary btn-sm">Chỉnh sửa</a>
-                                    <a href="~/Course/Delete/@course.CourseId" class="btn btn-primary btn-sm">Xóa</a>
+                                    <button id="delete-course" class="btn btn-primary btn-sm" data-id="@course.CourseId">Xóa</button>
                                 </td>
                             </tr>
                         }
@@ -100,6 +100,25 @@
                     "previous": "Trước đó" // Văn bản phân trang trước đó
                 },
                 "emptyTable": "Không có dữ liệu" // Khi bảng không có dữ liệu
+            }
+        });
+        $('#delete-course').on('click', function () {
+            var courseId = $(this).data('id');
+
+            if (confirm("Bạn có chắc chắn muốn xóa khóa học này?")) {  // Hiển thị xác nhận trước khi xóa
+                $.ajax({
+                    url: '/Course/Delete',  // Đường dẫn tới action Delete
+                    type: 'POST',
+                    data: { id: courseId },  // Truyền id của course qua AJAX
+                    success: function (response) {
+                        alert(response.message);  // Thông báo khi xóa thành công
+                        // Tùy thuộc vào logic của bạn, có thể là xóa phần tử DOM
+                        $('button[data-id="' + courseId + '"]').closest('tr').remove();  // Xóa hàng tương ứng trong table
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi xóa course.");
+                    }
+                });
             }
         });
     });

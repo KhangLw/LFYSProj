@@ -108,5 +108,70 @@ namespace LFYS_Project.Controllers
             }
             return BadRequest();
         }
+
+        [Authorize(Roles = "Creater, Admin")]
+        public IActionResult UpdateFile(int id)
+        {
+            var file = _context.FileDocuments.Include(fd => fd.Document).FirstOrDefault(f => f.FiledocId == id);
+            return View(file);
+        }
+        [Authorize(Roles = "Creater, Admin")]
+        [HttpPost]
+        public async Task<IActionResult> UpdateFile(int id, string title, string content, string selectedDocument)
+        {
+            var fileDoc = await _context.FileDocuments.FindAsync(id);
+
+            if (fileDoc == null)
+            {
+                return NotFound(new { message = "File document không tồn tại" });
+            }
+
+            if (ModelState.IsValid)
+            {
+                fileDoc.FileTitle = title;
+                fileDoc.FileContent = content;
+                fileDoc.DocumentId = Convert.ToInt32(selectedDocument);
+                _context.FileDocuments.Update(fileDoc);
+                await _context.SaveChangesAsync();
+                return Ok(new { message = "File document đã được cập nhật thành công" });
+            }
+
+            return BadRequest(new { message = "Dữ liệu không hợp lệ" });
+        }
+
+        [Authorize(Roles = "Creater, Admin")]
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            // Tìm course dựa trên ID
+            var document = await _context.Documents.FindAsync(id);
+            if (document == null)
+            {
+                return NotFound();
+            }
+            var fileDoc = _context.FileDocuments.Where(v => v.DocumentId == id).ToList();
+            _context.FileDocuments.RemoveRange(fileDoc);
+            _context.Documents.Remove(document);
+            await _context.SaveChangesAsync();
+
+            // Trả về kết quả sau khi xóa thành công
+            return Ok(new { message = "Tài liệu đã được xóa thành công" });
+        }
+
+        [Authorize(Roles = "Creater, Admin")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteFile(int id)
+        {
+            var file = await _context.FileDocuments.FindAsync(id);
+            if (file == null)
+            {
+                return NotFound();
+            }
+            _context.FileDocuments.Remove(file);
+            await _context.SaveChangesAsync();
+
+            // Trả về kết quả sau khi xóa thành công
+            return Ok(new { message = "Bài học đã được xóa thành công" });
+        }
     }
 }

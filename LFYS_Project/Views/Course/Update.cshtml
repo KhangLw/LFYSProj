@@ -3,6 +3,7 @@
 @{
     WlfysProjContext _context = new WlfysProjContext();
     var categories = _context.Categories.ToList();
+    var videos = _context.Videos.Where(v => v.CourseId == Model.CourseId).ToList();
 }
 <div class="container mt-5">
     <h1 class="text-center mb-4">Chỉnh Sửa Khóa Học</h1>
@@ -54,6 +55,25 @@
         <button class="btn btn-primary" id="addCourseBtn">Lưu Khóa Học</button>
     </div>
 </div>
+<div class="container mt-5">
+    <h3 class="mb-4 text-uppercase">Danh Sách Bài Giảng</h3>
+    <div class="row">
+        @{
+            foreach (var video in videos)
+            {
+                <div class="col-md-6">
+                    <div class="card text-light mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title color-white">@video.Title</h5>
+                            <a href="~/Course/UpdateVideo/@video.VideoId" class="btn btn-primary btn-sm text-center">Chỉnh sửa</a>
+                            <button class="btn btn-primary btn-sm delete-video" data-id="@video.VideoId">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -92,18 +112,32 @@
             contentType: false,
             success: function (response) {
                 alert('Khóa học đã được sửa thành công!');
-                // Xóa form sau khi gửi
-                // document.getElementById('courseName').value = '';
-                // document.getElementById('courseDescription').value = '';
-                // document.getElementById('courseCategory').value = '';
-                // document.getElementById('isFree').checked = false;
-                // document.getElementById('price').value = '';
-                // document.getElementById('discount').value = '';
-                // document.getElementById('courseAvt').value = '';
+               
             },
             error: function (xhr, status, error) {
                 console.error(error);
                 alert('Có lỗi xảy ra khi sửa khóa học.');
+            }
+        });
+    });
+            document.querySelectorAll('.delete-video').forEach(function (button) {
+        button.addEventListener('click', function () {
+            var courseId = $(this).data('id');  // Lấy courseId từ thuộc tính data-id của phần tử
+
+            if (confirm("Bạn có chắc chắn muốn xóa video này?")) {  // Hiển thị xác nhận trước khi xóa
+                $.ajax({
+                    url: '/Course/DeleteVideo',  // Đường dẫn tới action Delete
+                    type: 'POST',
+                    data: { id: courseId },  // Truyền id của video qua AJAX
+                    success: function (response) {
+                        alert(response.message);  // Thông báo khi xóa thành công
+                        // Xóa phần tử DOM chứa video tương ứng
+                        $('button[data-id="' + courseId + '"]').closest('tr').remove();  // Xóa hàng trong bảng
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi xóa video.");
+                    }
+                });
             }
         });
     });

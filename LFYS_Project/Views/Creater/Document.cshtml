@@ -51,7 +51,7 @@
                             <td>
                                 <a href="~/Document/Detail/@document.DocumentId" class="btn btn-primary btn-sm">Chi tiết</a>
                                 <a href="~/Document/Update/@document.DocumentId" class="btn btn-primary btn-sm">Chỉnh sửa</a>
-                                <a href="~/Document/Delete/@document.DocumentId" class="btn btn-primary btn-sm">Xóa</a>
+                                <button id="delete-document" class="btn btn-primary btn-sm" data-id="@document.DocumentId">Xóa</button>
                             </td>
                         </tr>
                     }
@@ -100,6 +100,24 @@
                     "previous": "Trước đó" // Văn bản phân trang trước đó
                 },
                 "emptyTable": "Không có dữ liệu" // Khi bảng không có dữ liệu
+            }
+        });
+        $('#delete-document').on('click', function () {
+            var courseId = $(this).data('id');
+
+            if (confirm("Bạn có chắc chắn muốn xóa Tài liệu này?")) {  // Hiển thị xác nhận trước khi xóa
+                $.ajax({
+                    url: '/Document/Delete',  // Đường dẫn tới action Delete
+                    type: 'POST',
+                    data: { id: courseId },  // Truyền id của course qua AJAX
+                    success: function (response) {
+                        alert(response.message);  // Thông báo khi xóa thành công
+                        
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi khi xóa.");
+                    }
+                });
             }
         });
     });
